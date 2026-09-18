@@ -190,6 +190,14 @@
   .good{border-left-color:var(--mint);background:color-mix(in srgb,var(--mint) 10%, var(--paper))}
   .good::before{content:"🌿 别担心";color:var(--mint)}
 
+  /* ---------- graduation standard ---------- */
+  .grad{border-left:3px solid var(--lav);
+    background:color-mix(in srgb,var(--lav) 9%, var(--paper));
+    border-radius:0 13px 13px 0;padding:12px 16px 13px;margin:13px 0;font-size:15px}
+  .grad b,.grad strong{color:inherit;font-weight:700}
+  .grad::before{content:"🎓 达到这个，就可以往下了";display:block;font-size:11.5px;
+    font-weight:700;letter-spacing:.5px;color:var(--lav);margin-bottom:5px}
+
   /* ---------- lists ---------- */
   .steps{counter-reset:s;list-style:none;padding:0;margin:12px 0 0}
   .steps li{counter-increment:s;position:relative;padding-left:36px;margin:11px 0}
@@ -212,7 +220,7 @@
     border:1px solid var(--line);border-radius:13px;padding:12px 14px;font-size:15px}
   .gear em{font-style:normal;flex:0 0 auto;font-size:19px}
 
-  /* trap cards (replaces 3-col table on mobile) */
+  /* trap cards */
   .trap{display:grid;gap:12px;margin-top:6px}
   .trap article{border:1px solid var(--line);border-radius:14px;overflow:hidden}
   .trap h4{margin:0;padding:11px 15px;background:var(--tint);color:var(--rose-d);
@@ -221,6 +229,36 @@
   .trap .row + .row{border-top:1px dashed var(--line)}
   .trap .row b.lbl{display:block;font-size:11.5px;letter-spacing:.5px;
     color:var(--dim);font-weight:700;margin-bottom:2px}
+
+  /* ---------- diagnostic accordion ---------- */
+  .dx{display:grid;gap:10px;margin:4px 0 0}
+  .dx details{border:1px solid var(--line);border-radius:14px;background:var(--paper);
+    box-shadow:var(--shadow);overflow:hidden}
+  .dx summary{padding:14px 16px;font-size:16px;font-weight:700;color:var(--rose-d);
+    cursor:pointer;list-style:none;display:flex;align-items:center;gap:10px;
+    transition:background .15s}
+  .dx summary::-webkit-details-marker{display:none}
+  .dx summary::marker{content:""}
+  .dx summary .ico{font-size:18px;flex:0 0 auto}
+  .dx summary .cnt{margin-left:auto;font-size:12px;font-weight:600;color:var(--dim);
+    background:var(--tint);border:1px solid var(--line);border-radius:999px;
+    padding:2px 9px;flex:0 0 auto}
+  .dx summary .chev{flex:0 0 auto;color:var(--dim);font-size:13px;font-weight:700;
+    transition:transform .2s}
+  .dx details[open] summary .chev{transform:rotate(90deg)}
+  .dx summary:active{background:var(--tint)}
+  .dx details[open] summary{border-bottom:1px solid var(--line)}
+  .dxbody{padding:2px 16px 14px}
+  .sym{padding:13px 0 2px;border-top:1px dashed var(--line)}
+  .sym:first-child{border-top:0;padding-top:10px}
+  .sym .q{margin:0 0 6px;font-size:15px;font-weight:700;color:var(--txt);line-height:1.6}
+  .sym .q::before{content:"「";color:var(--dim);font-weight:400}
+  .sym .q::after{content:"」";color:var(--dim);font-weight:400}
+  .sym ul{margin:0;padding-left:19px;font-size:14.5px}
+  .sym li{margin:6px 0;line-height:1.8}
+  .sym p{margin:6px 0;font-size:14.5px;line-height:1.8}
+  .dxnote{background:var(--tint);border:1px solid var(--line);border-radius:14px;
+    padding:13px 16px;font-size:14.5px;margin:0 0 4px;line-height:1.8}
 
   /* ---------- pager ---------- */
   .pager{display:flex;gap:10px;margin:26px 0 8px}
@@ -245,6 +283,8 @@
     .card{padding:15px 16px}
     .ptitle h2{font-size:19px}
     .sub{padding-left:0;margin-top:8px}
+    .dx summary{font-size:15px;padding:13px 14px}
+    .dxbody{padding:2px 14px 12px}
   }
 </style>
 </head>
@@ -272,6 +312,7 @@
       <button class="tab" role="tab" aria-selected="false" data-i="7">7 · 练习要点</button>
       <button class="tab" role="tab" aria-selected="false" data-i="8">8 · 换刃陷阱</button>
       <button class="tab" role="tab" aria-selected="false" data-i="9">💗 女生贴士</button>
+      <button class="tab" role="tab" aria-selected="false" data-i="10">🔍 出问题了？</button>
     </div>
   </div>
   <div class="rp"><i id="rpBar"></i></div>
@@ -291,6 +332,9 @@
     <p>我把单板从零到能连续转弯的路线整理了一遍，每一节都配了图，重点的地方也标好了视频时间点。不用急着一次看完，用到哪里翻到哪里就好。</p>
     <div class="tip">
       有一句话可以先记住：不管是哪一种转弯，目的都是为了<b>控速、减速和刹车</b>。动作想不明白的时候，就回到这一句，通常就通了。
+    </div>
+    <div class="tip good">
+      如果在雪场上遇到问题 —— 一直往一边偏、腿抖、换刃老是摔 —— 可以直接翻到最后一节 <b>🔍 出问题了？</b>，按你遇到的情况找，会快很多。
     </div>
   </div>
 
@@ -914,6 +958,15 @@
     <div class="tip">
       每个教练的顺序可能不太一样。有的会先教单脚滑行和直滑降，有的先从推坡落叶飘建立雪感再回头补。<b>顺序不是唯一标准</b>，跟着你教练的节奏走就好，这里只是给你自己对照进度用的。
     </div>
+    <div class="grad">
+      下面每个动作后面，都有一张这样的<b>紫色卡片</b>，写着“练到什么程度可以进下一步”。三条通用的原则：
+      <br><br>
+      <b>① 能重复，才算会。</b>偶然成功一次不算，要能连续做到 3 次。
+      <br>
+      <b>② 在缓坡上做对，比在陡坡上勉强重要。</b>坡度之后可以再加，动作定型了就很难改。
+      <br>
+      <b>③ 卡住的时候往回退一步。</b>换刃练不出来，通常不是换刃的问题，是落叶飘或 Garland 还不够稳。退回去练，比硬磕快得多。
+    </div>
   </div>
 
   <div class="card">
@@ -928,6 +981,9 @@
     <div class="tip good">
       为什么值得花这几分钟：这是你的身体第一次理解“我的脚踝和这块板是连在一起的”。<b>在平地上找到这个感觉，是零风险的</b>；等到了坡上再找，就要一边怕一边找了。
     </div>
+    <div class="grad">
+      脚尖压一下、脚跟压一下，<b>能清楚分辨出前刃和后刃立起来的感觉</b>；能原地蹲下再站起来，不会失去平衡。
+    </div>
   </div>
 
   <div class="card">
@@ -939,6 +995,9 @@
     </ul>
     <div class="tip danger">
       提醒一下：<b>“重心在前脚”这句只适用于单脚滑行。</b>双脚上板之后，前后脚要<b>均匀受力</b>，不是一直死压前脚。很多人把这句带进了推坡和落叶飘，结果后刃怎么都压不住。
+    </div>
+    <div class="grad">
+      能在平地上<b>连续蹬 3~5 下往前走</b>，板头不会一左一右乱跑。
     </div>
   </div>
 
@@ -952,6 +1011,11 @@
     </ol>
     <div class="tip good">
       记住这个组合就好：<b>板横过来 + 脚跟压下去 = 刹车</b>。只要知道自己随时能停下来，在坡上的恐惧会少掉一大半。后面的落叶飘、J 弯，收尾用的也都是这一招。
+    </div>
+    <div class="grad">
+      在缓坡上，<b>不管从什么速度都能主动停下来</b>，而且是慢慢停住的，不是摔停的。
+      <br><br>
+      <b>这一条最重要，没做到的话，先别急着往下。</b>
     </div>
   </div>
 
@@ -967,6 +1031,9 @@
     </div>
     <div class="tip">
       控制不住方向？通常是速度超过了你能接受的范围 —— 一害怕重心就后移，一后坐就控制不了方向了。这时候提醒自己<b>重心前移</b>，或者干脆把速度再放慢一点。
+    </div>
+    <div class="grad">
+      能在缓坡上<b>放直板 3 秒</b>，全程重心稳定、方向可控，最后能自己主动刹停。
     </div>
     <p><span class="time">视频 0:00 – 6:43</span></p>
     <a class="btn" href="http://xhslink.com/o/AvoPeiZQwoN" target="_blank" rel="noopener">
@@ -987,6 +1054,11 @@
     <div class="tip">
       这个阶段，<b>手自然垂在身体两侧就好，尽量别乱挥</b>。手一乱动会直接干扰平衡。可以反复练不同的幅度，感受重心移动多少会带来多少速度变化和刹车效果。
     </div>
+    <div class="grad">
+      <b>后刃：</b>能匀速往下滑 10 米左右，然后主动停住 —— 中途不加速、不失控。再进一步，能控制“快一点 / 慢一点”。
+      <br><br>
+      <b>前刃：</b>同样的标准，而且要能<b>抬头看着山上</b>完成，不低头。
+    </div>
   </div>
 
   <div class="card">
@@ -1002,6 +1074,11 @@
     </div>
     <h4>进阶目标</h4>
     <p>能比较自如地控制飘的角度和速度，横切整条雪道，而不是只能左右小幅度地挪动。</p>
+    <div class="grad">
+      <b>后刃：</b>能<b>左右各飘 3 次以上</b>，方向是你想去哪就去哪，不是随机漂。
+      <br><br>
+      <b>前刃：</b>同样的标准，而且能<b>放开扶手或护网独立完成</b>。
+    </div>
     <p><span class="time">斜滑降细节 6:47 – 9:55</span></p>
     <a class="btn ghost" href="http://xhslink.com/o/AvoPeiZQwoN" target="_blank" rel="noopener">
       <span class="ic">▶</span><span>从站姿到换刃 · 单板入门指南<small>看 6:47 – 9:55 这一段</small></span>
@@ -1024,6 +1101,11 @@
     <div class="tip good">
       为什么特别推荐这一步：换刃做不出来，最大的原因就是<b>不敢把板放平</b>。Garland 让你在随时都能收住的安全感里去练放平，练熟了再学 C 弯，会少摔很多次。
     </div>
+    <div class="grad">
+      能在同一个刃上<b>连续做 3~4 个小波浪</b>，每次放平都能稳稳收回来，不会越放越快。
+      <br><br>
+      <b>这一条是换刃真正的门槛。</b>
+    </div>
   </div>
 
   <div class="card">
@@ -1038,6 +1120,11 @@
     </div>
     <div class="tip good">
       控速很简单：<b>直板滑行的时间越短，进弯的速度就越慢</b>。心里发怵的话，就早一点开始转。
+    </div>
+    <div class="grad">
+      能从直板下滑<b>转上山、完全停住</b>，连续做到 3 次。
+      <br><br>
+      前刃 J 弯通常会比后刃难一些，多给自己一点时间，很正常。
     </div>
   </div>
 
@@ -1070,6 +1157,9 @@
     <div class="tip good">
       关于节奏：做完一次换刃可以慢下来，先稳住速度和站姿，再做下一个。<b>转弯的过程完全可以是慢慢的</b> —— 坡度缓，就会有足够的时间。
     </div>
+    <div class="grad">
+      收弯的时候，<b>踩的是和起点不同的那个刃</b> —— 这就是判断标准。能连续做到 2~3 次不摔。
+    </div>
     <p><span class="time">视频 10:00 – 11:40</span></p>
     <a class="btn" href="http://xhslink.com/o/AvoPeiZQwoN" target="_blank" rel="noopener">
       <span class="ic">▶</span><span>从站姿到换刃 · 单板入门指南<small>看 10:00 – 11:40 这一段</small></span>
@@ -1087,6 +1177,11 @@
     <p>把中间的<b>推坡时间和直板时间慢慢缩短</b>，两个反向的 C 弯就连成了流畅的 S 弯。</p>
     <div class="tip">
       练习建议：在缓坡上设两个间距十米左右的参照物，保证每次换刃都<b>完整、流畅地做完</b>，慢慢建立肌肉记忆。不用贪大弯。
+    </div>
+    <div class="grad">
+      能在缓坡上<b>连续换刃 3 次以上</b>，中间不需要停下来重新整理。
+      <br><br>
+      做到这一步，就算是<b>入门了</b> 🎉
     </div>
     <p><span class="time">视频 11:40 – 结束</span></p>
     <a class="btn" href="http://xhslink.com/o/AvoPeiZQwoN" target="_blank" rel="noopener">
@@ -1213,6 +1308,190 @@
   </div>
 </div>
 
+<!-- ======================= 10 出问题了 ======================= -->
+<div class="panel" data-panel="10">
+  <div class="ptitle"><span class="n">🔍</span><h2>出问题了？</h2></div>
+  <p class="sub">在雪场上遇到状况，按你看到的现象找就好</p>
+
+  <div class="dxnote">
+    这一节是给你<b>在雪场现场用</b>的 —— 不用从头读，点开跟你情况最接近的那一类，里面是常见的原因和怎么调整。
+  </div>
+
+  <div class="dx">
+
+    <details>
+      <summary><span class="ico">🧭</span>关于方向<span class="cnt">3 条</span><span class="chev">›</span></summary>
+      <div class="dxbody">
+        <div class="sym">
+          <p class="q">一直往同一边偏，走不直</p>
+          <ul>
+            <li>最常见的原因：<b>前脚没有均匀踩板</b>。只压前脚掌或只压后脚跟，板头就会往一边跑。试着让整个脚掌平均受力。</li>
+            <li>其次：视线一直看着某个方向。<b>你看哪里，身体就会带你去哪里</b>。</li>
+            <li>单脚滑行的时候特别明显，这是正常的，多试几次就好。</li>
+          </ul>
+        </div>
+        <div class="sym">
+          <p class="q">想往左飘，板子却往右走</p>
+          <ul>
+            <li>多半是<b>上半身和下半身不同步</b>：肩膀已经转过去了，但脚下没动。</li>
+            <li>落叶飘的方向靠的是<b>视线 + 脚踝的细微调整</b>，不是靠扭腰。先把视线看向要去的方向，身体自己会跟上。</li>
+          </ul>
+        </div>
+        <div class="sym">
+          <p class="q">转弯转到一半就停住了，转不过去</p>
+          <ul>
+            <li><b>速度不够。</b>转弯需要一点速度才能完成，太慢的话板子会“陷”在半路。直板的时间稍微放长一点点。</li>
+            <li>或者是坡度太缓了，可以找一个稍微有一点点坡的地方试试。</li>
+          </ul>
+        </div>
+      </div>
+    </details>
+
+    <details>
+      <summary><span class="ico">💨</span>关于速度<span class="cnt">3 条</span><span class="chev">›</span></summary>
+      <div class="dxbody">
+        <div class="sym">
+          <p class="q">速度越来越快，收不住</p>
+          <ul>
+            <li>第一时间：<b>让板横过来 + 脚跟压下去</b>，这就是刹车。</li>
+            <li>如果已经慌了，就主动坐下 —— 记得<b>先屈膝降低重心再坐</b>，别直挺挺往后砸。</li>
+            <li>根本原因通常是<b>刃立得不够</b>。害怕的时候人会不自觉地把板放平，而放平就等于加速，这是个恶性循环。<b>越怕，越要把脚跟压下去。</b></li>
+          </ul>
+        </div>
+        <div class="sym">
+          <p class="q">推坡的时候板子完全不动</p>
+          <ul>
+            <li><b>刃立得太多了</b>，板子被完全卡住。</li>
+            <li>把脚尖慢慢放下一点点，重心稍微往板中线移一点（但不要超过板中线），板子就会开始滑了。</li>
+          </ul>
+        </div>
+        <div class="sym">
+          <p class="q">一放平板就加速到失控</p>
+          <ul>
+            <li>说明身体还没准备好放平。可以回去练 <b>Garland 波浪练习</b> —— 在同一个刃上，放平一点点马上收回来，让身体先习惯“放平会加速”这件事，但随时都能停住。</li>
+          </ul>
+        </div>
+      </div>
+    </details>
+
+    <details>
+      <summary><span class="ico">🦵</span>关于腿和身体<span class="cnt">4 条</span><span class="chev">›</span></summary>
+      <div class="dxbody">
+        <div class="sym">
+          <p class="q">腿抖得厉害，在坡上突突突打滑</p>
+          <ul>
+            <li>九成是<b>膝盖太直了</b>。膝盖既是发动机也是避震器，伸直了就没有缓冲。保持弯曲就好。</li>
+            <li>也有可能是遇到冰面了 —— 冰面上打滑的声音不太一样，听得出来。</li>
+          </ul>
+        </div>
+        <div class="sym">
+          <p class="q">腰很酸，滑一会儿就直不起来</p>
+          <ul>
+            <li>典型的<b>折髋</b>：弯腰撅屁股，用腰在支撑身体。</li>
+            <li>正确的是<b>屈膝屈踝</b> —— 让弯曲发生在膝盖和脚踝上，上半身保持直立。自检：胸口应该朝着前进方向，不是朝着地面。</li>
+          </ul>
+        </div>
+        <div class="sym">
+          <p class="q">小腿前侧超级酸</p>
+          <ul>
+            <li>前刃练得多的话，这是正常的，这块肌肉平时用不到。</li>
+            <li>但如果酸到发抖，检查一下<b>雪鞋是不是没绑紧</b> —— 鞋松的话小腿要一直用力硬掰，会累得特别快。</li>
+          </ul>
+        </div>
+        <div class="sym">
+          <p class="q">后刃怎么都压不住，坐不进去</p>
+          <ul>
+            <li>先检查：小腿肚<b>有没有被高背板顶住的感觉</b>？如果完全没有，那其实只是在弯膝盖，重心根本没移过去。</li>
+            <li>另一个常见原因：把“重心在前脚”这句话带进了双脚滑行。<b>那句只适用于单脚滑行</b>，双脚上板之后要前后均匀受力。</li>
+          </ul>
+        </div>
+      </div>
+    </details>
+
+    <details>
+      <summary><span class="ico">🤕</span>关于摔跤<span class="cnt">3 条</span><span class="chev">›</span></summary>
+      <div class="dxbody">
+        <div class="sym">
+          <p class="q">一直摔屁股（后刃侧）</p>
+          <ul>
+            <li>通常发生在<b>后刃刹车时用力过猛</b>，或者重心过度后坐的时候。</li>
+            <li>试着把动作放缓 —— 重心的移动是渐进的，不是一下子甩过去。</li>
+          </ul>
+        </div>
+        <div class="sym">
+          <p class="q">换刃的时候必摔，摔得很狠</p>
+          <ul>
+            <li>典型的<b>卡刃</b>。原因几乎一定是：<b>板还没完全放平就急着压新刃</b>。</li>
+            <li>解法：耐心等板头指向山下、整块板贴平雪面，<b>心里数一秒</b>，再转移重心。</li>
+            <li>如果还是不行，退回去练 <b>Garland</b>，会比硬磕快得多。</li>
+          </ul>
+        </div>
+        <div class="sym">
+          <p class="q">前刃摔（往前扑）</p>
+          <ul>
+            <li>相对少见，但通常是<b>上半身抢先转了</b>，下半身没跟上。</li>
+            <li>试试<b>绅士姿势</b>：前手轻轻搭在前侧胯骨上，整个转弯过程手别离开。</li>
+          </ul>
+        </div>
+      </div>
+    </details>
+
+    <details>
+      <summary><span class="ico">🎿</span>关于装备和状态<span class="cnt">3 条</span><span class="chev">›</span></summary>
+      <div class="dxbody">
+        <div class="sym">
+          <p class="q">脚很痛 / 脚趾发麻</p>
+          <ul>
+            <li>先检查<b>袜子有没有皱</b>，尤其是和裤子重叠的那一段。</li>
+            <li>鞋子绑得太紧也会麻，松一点再试试。</li>
+            <li>中午可以脱下来休息十分钟，会好很多。</li>
+          </ul>
+        </div>
+        <div class="sym">
+          <p class="q">板子好像不听使唤，人动了但板没动</p>
+          <ul>
+            <li>多半是<b>绑带或雪鞋没穿紧</b>。自检：轻轻晃一下，板应该跟着动，不需要用很大力。</li>
+            <li>如果都紧了还是这样，可能是<b>鞋子太大</b>或者<b>板太硬</b>，可以找教练换一双。</li>
+          </ul>
+        </div>
+        <div class="sym">
+          <p class="q">莫名其妙绊一下、摔得很突然</p>
+          <ul>
+            <li>如果是阴天或者在下雪，多半是<b>平坦光</b> —— 雪面的起伏完全看不出来。<b>不是你的技术退步了。</b></li>
+            <li>换浅色镜片、跟着别人的轨迹走、主动放慢速度。</li>
+          </ul>
+        </div>
+      </div>
+    </details>
+
+    <details>
+      <summary><span class="ico">🫧</span>关于心情<span class="cnt">2 条</span><span class="chev">›</span></summary>
+      <div class="dxbody">
+        <div class="sym">
+          <p class="q">越滑越怕，不敢往下</p>
+          <ul>
+            <li>先停下来，喝口热的。<b>一直连续摔的时候，休息比硬撑有用。</b></li>
+            <li>回到你确定能做好的那个动作（比如后刃推坡），做两趟找回手感，再往前。</li>
+            <li>把坡度降下来。<b>在缓的地方做对，比在陡的地方勉强重要得多。</b></li>
+          </ul>
+        </div>
+        <div class="sym">
+          <p class="q">看着别人都会了，只有我不会</p>
+          <ul>
+            <li>每个人的节奏都不一样。<b>第一天能做到后刃落叶飘，就完全达标了。</b></li>
+            <li>而且你看到的那些人 —— 你没看到他们摔的那些天。</li>
+          </ul>
+        </div>
+      </div>
+    </details>
+
+  </div>
+
+  <div class="tip good">
+    找不到对应的情况，或者试了还是不行，就<b>直接问我</b>，或者拍段视频给教练看。有些问题当面看一眼就知道了，自己琢磨很费劲。
+  </div>
+</div>
+
 <div class="pager">
   <button id="prev" type="button"><span>← 上一节</span><b id="prevLabel">—</b></button>
   <button id="next" type="button" class="next"><span>下一节 →</span><b id="nextLabel">—</b></button>
@@ -1292,7 +1571,7 @@
     return (i>=0 && i<panels.length) ? i : 0;
   }
 
-  // reading progress of the active panel
+  // reading progress
   function updateBar(){
     var h = document.documentElement.scrollHeight - window.innerHeight;
     var pct = h>0 ? Math.min(100, Math.max(0, window.scrollY / h * 100)) : 0;
@@ -1300,6 +1579,11 @@
   }
   window.addEventListener('scroll', updateBar, {passive:true});
   window.addEventListener('resize', updateBar);
+
+  // accordion height changes should refresh the progress bar
+  document.querySelectorAll('.dx details').forEach(function(d){
+    d.addEventListener('toggle', updateBar);
+  });
 
   var start = parseIdx();
   render(start);
