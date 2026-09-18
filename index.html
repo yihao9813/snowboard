@@ -10,12 +10,10 @@
 <style>
   :root{
     --bg:#fdf6f7;
-    --bg2:#fff;
     --paper:#ffffff;
     --tint:#fff0f3;
     --tint2:#f3f0fb;
     --line:#f0dfe4;
-    --line2:#e6dced;
     --txt:#4b3c44;
     --dim:#9a8791;
     --rose:#e8778f;
@@ -41,7 +39,6 @@
   }
   .wrap{max-width:760px;margin:0 auto;padding:0 16px}
 
-  /* ---------- header ---------- */
   header{padding:46px 0 8px;text-align:center}
   header .emoji{font-size:40px;line-height:1}
   h1{font-size:26px;margin:10px 0 6px;letter-spacing:1px;font-weight:700}
@@ -50,7 +47,6 @@
     background:var(--paper);border:1px solid var(--line);border-radius:999px;
     font-size:12px;color:var(--rose-d);box-shadow:var(--shadow)}
 
-  /* ---------- tab nav ---------- */
   .tabs{position:sticky;top:0;z-index:30;margin:18px -16px 0;padding:10px 16px 12px;
     background:rgba(253,246,247,.9);backdrop-filter:blur(12px);
     border-bottom:1px solid var(--line)}
@@ -63,7 +59,6 @@
   .tab[aria-selected="true"]{background:linear-gradient(135deg,#f08ca4,#e8778f);
     color:#fff;border-color:transparent;box-shadow:0 4px 12px rgba(232,119,143,.32)}
 
-  /* ---------- panels ---------- */
   .panel{display:none;animation:fade .32s ease}
   .panel.active{display:block}
   @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
@@ -76,7 +71,6 @@
   .ptitle h2{font-size:21px;margin:0;font-weight:700}
   .sub{color:var(--dim);font-size:13px;margin:0 0 16px;padding-left:43px}
 
-  /* ---------- cards ---------- */
   .card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);
     padding:18px 20px;margin:14px 0;box-shadow:var(--shadow)}
   .card h3{margin:0 0 10px;font-size:16.5px;color:var(--rose-d);font-weight:700}
@@ -137,12 +131,6 @@
     border:1px solid var(--line);border-radius:13px;padding:12px 14px;font-size:14.5px}
   .gear em{font-style:normal;flex:0 0 auto;font-size:19px}
 
-  .note{background:linear-gradient(140deg,#fff4f8,#f6f2fd);
-    border:1px dashed #e6c9d8;border-radius:var(--radius);padding:18px 20px;margin:14px 0}
-  .note h3{margin:0 0 8px;font-size:15px;color:var(--lav)}
-  .note p{margin:6px 0;font-size:14.5px;color:#6e6070}
-
-  /* ---------- pager ---------- */
   .pager{display:flex;gap:10px;margin:26px 0 8px}
   .pager button{flex:1;border:1px solid var(--line);background:var(--paper);
     color:var(--txt);border-radius:15px;padding:14px 12px;font-family:inherit;
@@ -185,11 +173,10 @@
     <button class="tab" role="tab" aria-selected="false" data-i="3">3 · 穿雪鞋</button>
     <button class="tab" role="tab" aria-selected="false" data-i="4">4 · 穿固定器</button>
     <button class="tab" role="tab" aria-selected="false" data-i="5">5 · 起身与缆车</button>
-    <button class="tab" role="tab" aria-selected="false" data-i="6">6 · 九个动作</button>
+    <button class="tab" role="tab" aria-selected="false" data-i="6">6 · 动作路线</button>
     <button class="tab" role="tab" aria-selected="false" data-i="7">7 · 练习要点</button>
     <button class="tab" role="tab" aria-selected="false" data-i="8">8 · 换刃陷阱</button>
     <button class="tab" role="tab" aria-selected="false" data-i="9">💗 女生贴士</button>
-    <button class="tab" role="tab" aria-selected="false" data-i="10">✍️ 我的感悟</button>
   </div>
 </nav>
 
@@ -205,17 +192,10 @@
   <div class="card">
     <h3>这份指南怎么用</h3>
     <p>整理了单板从零到能连续转弯的完整路线，每一节都配了图，重点的地方标了视频时间点。</p>
-    <ul>
-      <li><b>第一次上雪</b> → 按顺序看 0 → 1 → 2 → 3 → 4 → 起身与缆车，就够了。别一次看完，会信息过载。</li>
-      <li><b>已经在雪场了</b> → 直接翻到「九个动作」对照练。</li>
-      <li><b>卡在换刃</b> → 看「换刃陷阱」，八成能对上号。</li>
-      <li><b>女生必看</b> → 「女生贴士」那一节，都是很实际的坑。</li>
-    </ul>
   </div>
 
   <div class="card">
     <h3>第一天的合理进度</h3>
-    <p>很多人第一天会觉得「是不是只有我这么慢」。给你一个真实的参考：</p>
     <table>
       <tr><th style="width:30%">时段</th><th>内容</th></tr>
       <tr><td><b>上午</b></td><td>穿装备 → 平地适应 → 练起身 → 单脚滑行 → 后刃推坡</td></tr>
@@ -223,6 +203,55 @@
     </table>
     <div class="tip good">
       <b>第一天能做到后刃落叶飘，就完全达标了。</b>不用追换刃，更不用和别人比。绝大多数人的换刃是第二天、第三天才出来的。
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>雪道分级：先看懂颜色</h3>
+    <p>雪场地图和每条雪道的入口都会标颜色，代表难度：</p>
+    <table>
+      <tr><th style="width:30%">颜色</th><th>难度</th></tr>
+      <tr><td><b>🟢 绿道</b></td><td>初级道，坡度最缓</td></tr>
+      <tr><td><b>🔵 蓝道</b></td><td>中级道</td></tr>
+      <tr><td><b>⚫ 黑道 / 🔴 红道</b></td><td>高级道</td></tr>
+    </table>
+    <div class="tip danger">
+      <b>第一天只待绿道。</b>别被朋友一句「走啦上去玩」就带上蓝道 —— 新手受伤最常见的起因，就是上了超出自己能力的雪道，然后一路失控往下冲。能力没到硬上，只会又怕又摔。
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>口袋里千万别放硬物</h3>
+    <div class="tip danger">
+      <b>胸前口袋千万千万不要放硬东西。</b>摔倒时是胸口、肋骨直接砸在那个东西上，后果很严重。<b>外套两侧口袋最好也别放。</b>
+      <br><br>
+      要带的东西<b>放裤子口袋</b>。放手机的话，<b>记得把拉链拉上</b>，不然摔一下就飞出去了，雪地里很难找。
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>包里带上这两样</h3>
+    <div class="gear">
+      <div><em>🍵</em><span><b>小号保温杯，接温水。</b>累的时候喝一口非常爽。冷天不觉得渴，但其实脱水很快。</span></div>
+      <div><em>🍫</em><span><b>一两条能量棒。</b>低血糖的时候能马上吃。饿过头会直接导致动作变形失控，这比技术问题更危险。</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>害怕速度，很正常</h3>
+    <p>几乎每个初学者都会怕，这不是胆子大小的问题。给你两个具体的办法：</p>
+    <div class="gear">
+      <div><em>🐢</em><span><b>从慢速开始，慢慢习惯。</b>不要一上来就挑战自己能承受的极限速度。先在很缓的地方滑，等身体适应了这个速度，再稍微快一点点。恐惧是可以被「熟悉感」一点点磨掉的。</span></div>
+      <div><em>👀</em><span><b>看你要去的方向，不要看脚下。</b>一低头看板子，重心马上就后坐、身体僵住，反而更容易失控。视线抬起来看远处，身体会自己稳下来。</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>让教练帮你拍一段视频</h3>
+    <div class="tip good">
+      <b>自己的感觉，和实际动作的差距大到你会吃惊。</b>你以为自己站得挺直，视频里可能整个人是弓着的。
+      <br><br>
+      请教练帮你<b>拍一小段视频</b>，然后对照「基础概念」里那张三种站姿的图复盘一下。这样看一次，比闷头多练十趟都有用。
     </div>
   </div>
 
@@ -246,7 +275,6 @@
   <div class="ptitle"><span class="n">1</span><h2>基础概念</h2></div>
   <p class="sub">上雪前先把这些搞明白，教练说什么你就听得懂</p>
 
-  <!-- A1 -->
   <div class="card">
     <h3>雪板部位与前刃后刃</h3>
     <figure>
@@ -276,7 +304,6 @@
     <p>穿上雪板后：<b>脚尖方向 = 前刃</b>，<b>脚后跟方向 = 后刃</b>。</p>
   </div>
 
-  <!-- A2 -->
   <div class="card">
     <h3>正脚还是反脚（Regular / Goofy）</h3>
     <figure>
@@ -323,7 +350,6 @@
     </div>
   </div>
 
-  <!-- A4 -->
   <div class="card">
     <h3>固定器角度怎么调</h3>
     <figure>
@@ -353,15 +379,27 @@
         <circle cx="516" cy="250" r="4" fill="#b9a6b1"/>
         <text x="526" y="255" fill="#9a8791" font-size="11">＝脚尖方向</text>
       </svg>
-      <figcaption>新手推荐起始角度</figcaption>
+      <figcaption>新手常见起始角度之一</figcaption>
     </figure>
-    <p>新手推荐 <b>前脚 +15°、后脚 0° 或 -6°</b>：容错高，正滑反滑都好平衡，膝盖压力也小。</p>
-    <div class="tip">
-      <b>别照抄别人：</b>角度跟身体柔韧度和滑行风格强相关。真要调，一次只动 3° 左右，滑两三天再决定要不要继续改。
+
+    <h4>为什么有人说 ±15，有人说 +15/0？</h4>
+    <p>两种都对，是<b>两种不同思路</b>，不是谁错了：</p>
+    <table>
+      <tr><th style="width:34%">设定</th><th>特点</th></tr>
+      <tr>
+        <td><b>对称鸭子站姿</b><br>+15/-15、+12/-12</td>
+        <td>两脚对称外八。<b>正滑反滑完全一样顺</b>，以后想学 switch（反着滑）、玩公园会很友好。很多雪场租赁默认给这个。</td>
+      </tr>
+      <tr>
+        <td><b>微鸭 / 偏前</b><br>+15/0 ~ +15/-6</td>
+        <td>后脚接近正对板身。<b>后脚更容易把力压进后刃</b>，前刃顶胯也更顺。新手阶段反正用不到 switch，很多教练会这样给。</td>
+      </tr>
+    </table>
+    <div class="tip good">
+      <b>结论：新手阶段两者差别很小，你几乎感受不出来。</b>不用自己纠结，让教练按你的身高、腿长和柔韧度设一个就行。真要自己改，一次只动 3° 左右，滑两三天再决定。
     </div>
   </div>
 
-  <!-- A5 -->
   <div class="card">
     <h3>滚落线（Fall Line）</h3>
     <figure>
@@ -390,7 +428,6 @@
     </div>
   </div>
 
-  <!-- A6 -->
   <div class="card">
     <h3>卡刃（Catching an Edge）</h3>
     <figure>
@@ -424,7 +461,6 @@
     </div>
   </div>
 
-  <!-- A7 -->
   <div class="card">
     <h3>三种基础站姿</h3>
     <figure>
@@ -490,7 +526,6 @@
     </div>
   </div>
 
-  <!-- A8 -->
   <div class="card">
     <h3>怎么确认重心真的移过去了</h3>
     <p>光靠感觉很容易骗自己，用身体接触点来验证：</p>
@@ -503,7 +538,6 @@
     </div>
   </div>
 
-  <!-- A10 -->
   <div class="card">
     <h3>弯型术语：J / C / S</h3>
     <figure>
@@ -632,9 +666,19 @@
   </div>
 
   <div class="card">
+    <h3>平坦光（Flat Light）：看不清雪面的日子</h3>
+    <p>阴天、下雪、起雾的时候，雪面会变成一片均匀的白，<b>起伏和坑包完全看不出来</b>，人会莫名其妙地绊一下、摔一跤 —— 不是你技术退步了，是真的看不见。</p>
+    <div class="gear">
+      <div><em>🥽</em><span>换<b>浅色镜片</b>的雪镜（黄色、粉色、透明），比深色片更能看出雪面层次。</span></div>
+      <div><em>🛤️</em><span><b>跟着别人的滑行痕迹走</b>，雪面上的沟槽能帮你判断地形。</span></div>
+      <div><em>🐢</em><span><b>主动放慢速度</b>，留出反应时间。</span></div>
+    </div>
+  </div>
+
+  <div class="card">
     <h3>什么时候该停下来休息</h3>
     <div class="tip good">
-      <b>连续摔三次，就去喝口热的、休息 10 分钟。</b>这不是意志力的问题 —— 累了动作必然变形，变形就更容易摔，然后更累，恶性循环。绝大多数受伤都发生在「明明已经很累了还要再滑一趟」的时候。
+      <b>一直连续摔，就休息一会儿。</b>这不是意志力问题，有可能是累了，导致动作变形，变形就更容易摔，然后更累，恶性循环。绝大多数受伤都发生在「明明很累了还要再滑一趟」的时候。
     </div>
   </div>
 </div>
@@ -716,9 +760,19 @@
   </div>
 
   <div class="card">
+    <h3>上缆车</h3>
+    <ol class="steps">
+      <li>解开后脚，只留前脚在板上。到指定位置站好，<b>板头朝前</b>。</li>
+      <li>回头看一眼椅子过来，坐下就好，<b>不用跳</b>。</li>
+      <li>坐稳后<b>立刻放下安全杆</b>。</li>
+      <li><b>后脚踩在板上</b>（踩在前固定器后面那块防滑垫上），别让雪板一直悬空晃 —— 晃久了前脚会很酸。</li>
+    </ol>
+  </div>
+
+  <div class="card">
     <h3>下缆车 —— 新手重灾区</h3>
     <ol class="steps">
-      <li>快到出口时，<b>提前把板头对准正前方</b>，前脚踩实雪板。</li>
+      <li>快到出口时先<b>抬起安全杆</b>，<b>把板头对准正前方</b>，前脚踩实雪板。</li>
       <li><b>屁股不要急着离开椅子</b>，等雪面托住雪板了再站起来。</li>
       <li>站起来之后<b>不要转身、不要立刻停</b>，就直板往前滑出去。</li>
       <li>滑到<b>旁边</b>再停下、再坐下穿板。</li>
@@ -729,10 +783,10 @@
   </div>
 </div>
 
-<!-- ======================= 6 九个动作 ======================= -->
+<!-- ======================= 6 动作路线 ======================= -->
 <div class="panel" data-panel="6">
-  <div class="ptitle"><span class="n">6</span><h2>入门九个动作</h2></div>
-  <p class="sub">练到能连续 S 弯，基本就算入门了</p>
+  <div class="ptitle"><span class="n">6</span><h2>入门动作路线</h2></div>
+  <p class="sub">九个核心动作 + 两个加练，练到能连续 S 弯，基本就算入门了</p>
 
   <div class="card">
     <h3>标准顺序</h3>
@@ -743,6 +797,20 @@
     </div>
     <div class="tip">
       <b>个别教练可能练习顺序不一样。</b>有的会先教单脚滑行和直滑降，有的先从推坡落叶飘建立雪感再回头补。顺序不是唯一标准，跟着你教练的节奏走就好，这里的顺序供你自己对照进度用。
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>⓪ 平地适应 <span style="font-size:12.5px;color:#9a8791;font-weight:400">（上坡之前先做）</span></h3>
+    <p>双脚绑好板，<b>在平地上</b>先让身体认识一下这块板。很多人跳过这步直接上坡，结果推坡时一直找不到刃在哪。</p>
+    <ol class="steps">
+      <li><b>左右摇晃。</b>脚尖压下去 → 感受前刃立起来；脚跟压下去 → 感受后刃立起来。来回慢慢晃，体会「脚踝一动，板就动」。</li>
+      <li><b>蹲一蹲。</b>屈膝屈踝往下蹲，再站起来，感受重心高低的变化。</li>
+      <li><b>原地跳一跳。</b>让身体习惯脚上绑着一块板的重量和惯性。</li>
+      <li><b>原地转一转。</b>试着用脚和身体把板子在原地挪动一点角度。</li>
+    </ol>
+    <div class="tip good">
+      <b>为什么不能跳过：</b>这是你的身体第一次理解「我的脚踝和这块板是连在一起的」。在平地上建立这个感觉，零风险；到了坡上再找，就要一边怕一边找。
     </div>
   </div>
 
@@ -759,7 +827,20 @@
   </div>
 
   <div class="card">
-    <h3>② 直滑降（放直板）</h3>
+    <h3>② 后刃刹停 <span style="font-size:12.5px;color:#9a8791;font-weight:400">（最该先学会的一招）</span></h3>
+    <p>在学任何转弯之前，先学会<b>怎么让自己停下来</b>。这是你在雪道上真正的安全感来源。</p>
+    <ol class="steps">
+      <li>让<b>雪板横过来</b>，垂直于滚落线。</li>
+      <li><b>脚跟压下去</b>，把后刃吃进雪里。</li>
+      <li>膝盖保持弯曲，重心压低，板子就会停住。</li>
+    </ol>
+    <div class="tip good">
+      <b>记住这个组合：板横过来 + 脚跟压下去 = 刹车。</b>只要能随时刹停，你在坡上的恐惧会减少一大半。后面所有的落叶飘、J 弯，收尾用的都是这一招。
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>③ 直滑降（放直板）</h3>
     <ul>
       <li>板头正对山下，<b>整块板贴雪不用刃</b>，重心在前脚。</li>
       <li>找一个平缓短坡；没有的话，用落叶飘滑到接近平地处、确认前方无人，再放直板下去，等板子自然停。</li>
@@ -778,7 +859,7 @@
   </div>
 
   <div class="card">
-    <h3>③ 推坡（Side Slip）</h3>
+    <h3>④ 推坡（Side Slip）</h3>
     <h4>后刃推坡</h4>
     <ol class="steps">
       <li><b>准备：</b>弯曲脚踝和膝盖，微抬脚尖，坐进高背板，找到能让雪板停住的平衡点。</li>
@@ -788,12 +869,12 @@
     <h4>前刃推坡</h4>
     <p>原理相同，改为<b>膝盖顶向前刃、顶胯、抬起脚跟</b>，去感受胫骨压鞋舌的支撑。</p>
     <div class="tip">
-      <b>手臂放低，放在身体两侧，不要乱动</b>，乱挥手会直接干扰平衡。反复练不同幅度，感受重心移动幅度带来的速度变化和刹车效果。
+      <b>手臂现阶段自然垂在身体两侧，别乱挥。</b>乱挥手会直接干扰平衡。反复练不同幅度，感受重心移动幅度带来的速度变化和刹车效果。
     </div>
   </div>
 
   <div class="card">
-    <h3>④ 斜滑降 + 落叶飘</h3>
+    <h3>⑤ 斜滑降 + 落叶飘</h3>
     <p>落叶飘 = 推坡 + 方向控制，像一片叶子左右飘着往下落。</p>
     <div class="tip">
       <b>视线就是方向盘：</b>看哪边就往哪边走，可以用手指方向引导。后刃时看身体正前方，前刃时<b>抬头看山上</b>。最常见的错误是低头看脚下。
@@ -816,7 +897,7 @@
   </div>
 
   <div class="card">
-    <h3>④½ Garland 波浪练习 <span style="font-size:12.5px;color:#9a8791;font-weight:400">（强烈建议加练）</span></h3>
+    <h3>⑤½ Garland 波浪练习 <span style="font-size:12.5px;color:#9a8791;font-weight:400">（强烈建议加练）</span></h3>
     <p>这是<b>前刃恐惧</b>和<b>不敢放平板</b>的最佳解药。它让你在<b>完全不用换刃</b>的前提下，反复体验「把板放平一点点、朝山下走一小段」的感觉。</p>
     <ol class="steps">
       <li>从落叶飘开始，保持在<b>同一个刃</b>上。</li>
@@ -830,7 +911,7 @@
   </div>
 
   <div class="card">
-    <h3>⑤⑥ J 弯</h3>
+    <h3>⑥⑦ J 弯</h3>
     <ol class="steps">
       <li>放直板下滑。</li>
       <li>转动前腿、改变膝盖指向，带动雪板转向。</li>
@@ -845,13 +926,16 @@
   </div>
 
   <div class="card">
-    <h3>⑦⑧ C 弯：第一次换刃</h3>
+    <h3>⑧ C 弯：第一次换刃</h3>
     <h4>三字口诀：看 → 压 → 转</h4>
     <ol class="steps">
       <li><b>看：</b>先把视线看向你要去的目标方向。</li>
       <li><b>压：</b>重心压向前脚。</li>
-      <li><b>转：</b>用胯带动身体旋转，顺序是<b>转头 → 转肩 → 转髋 → 转脚</b>，板子跟着走。双手放在身前，随目光转动。</li>
+      <li><b>转：</b>用胯带动身体旋转，顺序是<b>转头 → 转肩 → 转髋 → 转脚</b>，板子跟着走。</li>
     </ol>
+    <div class="tip">
+      <b>手的位置从这里开始变了。</b>前面推坡、落叶飘时手是自然垂在两侧的；<b>开始学换刃之后，改成「前手轻搭在前侧胯骨上」</b>。这是为了防止上半身抢着转 —— 详见「换刃陷阱」那一节。
+    </div>
     <h4>拆解成三步来练</h4>
     <ol class="steps">
       <li><b>起点：</b>用 A 刃（比如后刃）斜滑降。</li>
@@ -910,6 +994,22 @@
       <b>千万不要用手掌撑地。</b>摔倒时用手肘是 OK 的，手掌撑地最容易伤手腕。
     </div>
   </div>
+
+  <div class="card">
+    <h3>手到底该放哪？</h3>
+    <p>两个阶段不一样，别混了：</p>
+    <table>
+      <tr><th style="width:38%">阶段</th><th>手的位置</th></tr>
+      <tr>
+        <td><b>推坡 / 落叶飘</b></td>
+        <td>自然垂在身体两侧，别乱挥。乱挥会干扰平衡。</td>
+      </tr>
+      <tr>
+        <td><b>开始学换刃之后</b></td>
+        <td><b>前手轻搭在前侧胯骨上</b>，后手自然下垂。用来强制上半身别抢转。</td>
+      </tr>
+    </table>
+  </div>
 </div>
 
 <!-- ======================= 8 换刃陷阱 ======================= -->
@@ -945,10 +1045,10 @@
 
   <div class="card">
     <h3>装备：直接找教练帮你弄</h3>
-    <p>装备不对，会让你以为「是我不行」，其实是器材在跟你作对。这两件事<b>不用自己研究，直接请教练帮忙</b>：</p>
+    <p>选雪鞋、调固定器角度，可以直接让教练帮忙。</p>
     <div class="gear">
-      <div><em>🛷</em><span><b>选板选鞋。</b>跟教练或租赁柜台说「我是初学者，要最软的」。体重轻的女生尤其要<b>软板软鞋</b>。板太硬压不动、转不过来，会一整天都很挫败。</span></div>
-      <div><em>📐</em><span><b>固定器角度。</b>让教练帮你设好（一般前脚 +15°、后脚 0°~-6°）。自己瞎调不如交给他，这是他一分钟就能搞定的事。</span></div>
+      <div><em>🛷</em><span><b>选板选鞋。</b>跟教练台说是初学者，通常会给你比较软的鞋。体重轻的女生尤其要<b>软板软鞋</b>。板太硬压不动、转不过来，会一整天都很挫败。</span></div>
+      <div><em>📐</em><span><b>固定器角度。</b>让教练帮你设好。自己瞎调不如交给他，这是他一分钟就能搞定的事。</span></div>
     </div>
     <div class="tip danger">
       <b>雪鞋一定要穿女款。</b>女款鞋楦更窄、<b>小腿围更细</b>。穿男款鞋小腿绑不紧，力就传不到板上 —— 这是很多女生「怎么都控制不了板」的真实原因，不是技术问题。
@@ -961,7 +1061,7 @@
     <ul>
       <li><b>别把雪镜推到额头上</b>，头顶的汗气会直接糊住内层。</li>
       <li><b>绝对不能用手或纸巾擦内层镀膜</b>，擦一次就永久花了，之后会一直起雾。</li>
-      <li>休息时把雪镜<b>摘下来朝上放通风</b>，进室内提前摘。</li>
+      <li>休息时把雪镜<b>摘下来朝上放通风</b>，进室内提前摘。<b>把雪镜卡在头盔上进室内，很容易起雾。</b></li>
     </ul>
   </div>
 
@@ -998,26 +1098,6 @@
   </div>
 </div>
 
-<!-- ======================= 10 感悟 ======================= -->
-<div class="panel" data-panel="10">
-  <div class="ptitle"><span class="n">✍</span><h2>我的一些感悟</h2></div>
-  <p class="sub">自己踩过的坑，比教程更值钱</p>
-
-  <div class="note">
-    <h3>感悟 1</h3>
-    <p>（在这里写你的第一条心得）</p>
-  </div>
-  <div class="note">
-    <h3>感悟 2</h3>
-    <p>（在这里写你的第二条心得）</p>
-  </div>
-  <div class="note">
-    <h3>感悟 3</h3>
-    <p>（在这里写你的第三条心得）</p>
-  </div>
-</div>
-
-<!-- ---------- pager ---------- -->
 <div class="pager">
   <button id="prev" type="button"><span>← 上一节</span><b id="prevLabel">—</b></button>
   <button id="next" type="button" class="next"><span>下一节 →</span><b id="nextLabel">—</b></button>
@@ -1025,8 +1105,7 @@
 <div class="progress" id="progress"></div>
 
 <footer>
-  祝你玩得开心，安全第一 🏂<br>
-  内容整理自个人笔记与公开教学资料
+  祝你玩得开心，安全第一 🏂
 </footer>
 
 </div>
