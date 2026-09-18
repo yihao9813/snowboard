@@ -4,8 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>单板新手入门指南 · 从站姿到换刃</title>
-<meta name="description" content="基础概念、护具安全、推坡、落叶飘、J弯、C弯、S弯，附小红书视频与图解。">
-<meta name="theme-color" content="#fff6f7">
+<meta name="description" content="单板滑雪新手教程：基础概念、护具安全、推坡、落叶飘、J弯、C弯、S弯，附小红书视频与图解。">
+<meta name="theme-color" content="#fff6f7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#221a1f" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏂</text></svg>">
 <style>
   :root{
@@ -15,69 +17,117 @@
     --tint2:#f3f0fb;
     --line:#f0dfe4;
     --txt:#4b3c44;
-    --dim:#9a8791;
+    --dim:#7d6b75;
     --rose:#e8778f;
-    --rose-d:#d15a78;
-    --lav:#9b8bd0;
-    --mint:#4fb79c;
-    --gold:#d99b3f;
+    --rose-d:#c14a6b;
+    --lav:#6f5cb8;
+    --mint:#2d7a66;
+    --gold:#9a6a1c;
+    --alert:#c2410c;
+    --alert-bg:#fff4ed;
+    --alert-line:#f08a5d;
     --radius:20px;
     --shadow:0 6px 22px rgba(210,150,170,.13);
+    --fig-bg:linear-gradient(160deg,#fffafb,#fdf4f7);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#221a1f;
+      --paper:#2e2429;
+      --tint:#3a2c33;
+      --tint2:#332c42;
+      --line:#463640;
+      --txt:#f0e6ea;
+      --dim:#b8a5af;
+      --rose:#f090a4;
+      --rose-d:#f79bb1;
+      --lav:#b9a7ee;
+      --mint:#6fd4b4;
+      --gold:#f0c070;
+      --alert:#ffa273;
+      --alert-bg:#42291f;
+      --alert-line:#e07b4a;
+      --shadow:0 6px 22px rgba(0,0,0,.3);
+      --fig-bg:#fdf6f7;
+    }
   }
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-  html{scroll-behavior:smooth}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
   body{
     margin:0;
     background:
-      radial-gradient(900px 500px at 12% -5%, #ffe8ee 0%, transparent 55%),
-      radial-gradient(800px 460px at 92% 2%, #ece6fb 0%, transparent 52%),
+      radial-gradient(900px 500px at 12% -5%, color-mix(in srgb,var(--rose) 18%, transparent) 0%, transparent 55%),
+      radial-gradient(800px 460px at 92% 2%, color-mix(in srgb,var(--lav) 16%, transparent) 0%, transparent 52%),
       var(--bg);
     background-attachment:fixed;
     color:var(--txt);
     font:16px/1.85 -apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
-    padding-bottom:40px;
+    padding-bottom:calc(40px + env(safe-area-inset-bottom));
   }
-  .wrap{max-width:760px;margin:0 auto;padding:0 16px}
+  .wrap{max-width:760px;margin:0 auto;
+    padding:0 max(16px, env(safe-area-inset-left)) 0 max(16px, env(safe-area-inset-right))}
 
-  header{padding:46px 0 8px;text-align:center}
-  header .emoji{font-size:40px;line-height:1}
-  h1{font-size:26px;margin:10px 0 6px;letter-spacing:1px;font-weight:700}
+  /* ---------- header ---------- */
+  header{padding:30px 0 6px;text-align:center}
+  header .emoji{font-size:36px;line-height:1}
+  h1{font-size:25px;margin:8px 0 5px;letter-spacing:1px;font-weight:700}
   header p{color:var(--dim);margin:0;font-size:13.5px}
-  .hero-note{margin:14px auto 0;max-width:420px;padding:11px 16px;
+  .hero-note{margin:12px auto 0;max-width:420px;padding:11px 16px;
     background:var(--paper);border:1px solid var(--line);border-radius:14px;
-    font-size:13.5px;color:var(--txt);box-shadow:var(--shadow);line-height:1.75}
-  .hero-tag{display:inline-block;margin-top:12px;padding:5px 15px;
+    font-size:14px;color:var(--txt);box-shadow:var(--shadow);line-height:1.75}
+  .hero-tag{display:inline-block;margin-top:10px;padding:5px 15px;
     background:var(--paper);border:1px solid var(--line);border-radius:999px;
     font-size:12px;color:var(--rose-d);box-shadow:var(--shadow)}
 
-  .tabs{position:sticky;top:0;z-index:30;margin:18px -16px 0;padding:10px 16px 12px;
-    background:rgba(253,246,247,.9);backdrop-filter:blur(12px);
+  /* ---------- tab nav ---------- */
+  .tabs{position:sticky;top:0;z-index:30;margin:14px -16px 0;padding:10px 0 0;
+    background:color-mix(in srgb, var(--bg) 92%, transparent);
+    -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
     border-bottom:1px solid var(--line)}
-  .tabs-inner{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+  .tabs-shell{position:relative}
+  .tabs-inner{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;
+    padding:0 16px 11px;-webkit-overflow-scrolling:touch;scroll-padding-inline:16px}
   .tabs-inner::-webkit-scrollbar{display:none}
+  .tabs-shell::after{content:"";position:absolute;right:0;top:0;bottom:11px;width:40px;
+    pointer-events:none;
+    background:linear-gradient(to right, transparent, var(--bg) 82%)}
   .tab{flex:0 0 auto;border:1px solid var(--line);background:var(--paper);
-    color:var(--dim);border-radius:999px;padding:8px 15px;font-size:13.5px;
-    font-family:inherit;cursor:pointer;white-space:nowrap;transition:.18s;font-weight:500}
-  .tab:hover{color:var(--rose-d);border-color:#f5c9d5}
-  .tab[aria-selected="true"]{background:linear-gradient(135deg,#f08ca4,#e8778f);
-    color:#fff;border-color:transparent;box-shadow:0 4px 12px rgba(232,119,143,.32)}
+    color:var(--dim);border-radius:999px;padding:9px 15px;font-size:13.5px;
+    font-family:inherit;cursor:pointer;white-space:nowrap;font-weight:500;
+    transition:background .18s, color .18s, transform .1s}
+  .tab:active{transform:scale(.95);opacity:.8}
+  .tab[aria-selected="true"]{background:linear-gradient(135deg,#e8637f,#d1466a);
+    color:#fff;border-color:transparent;box-shadow:0 4px 12px rgba(209,70,106,.3)}
 
+  /* reading progress */
+  .rp{height:2.5px;background:transparent}
+  .rp i{display:block;height:100%;width:0;
+    background:linear-gradient(90deg,#f0a0b4,#e8637f);
+    border-radius:0 3px 3px 0;transition:width .1s linear}
+
+  /* ---------- panels ---------- */
   .panel{display:none;animation:fade .32s ease}
   .panel.active{display:block}
   @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion: reduce){
+    .panel{animation:none}
+    html{scroll-behavior:auto}
+  }
 
-  .ptitle{margin:26px 0 4px;display:flex;align-items:center;gap:11px}
+  .ptitle{margin:24px 0 4px;display:flex;align-items:center;gap:11px}
   .ptitle .n{flex:0 0 32px;height:32px;border-radius:11px;
-    background:linear-gradient(135deg,#f6a8bc,#e8778f);color:#fff;
+    background:linear-gradient(135deg,#f0879f,#d1466a);color:#fff;
     font-size:14px;display:grid;place-items:center;font-weight:700;
-    box-shadow:0 3px 9px rgba(232,119,143,.3)}
+    box-shadow:0 3px 9px rgba(209,70,106,.3)}
   .ptitle h2{font-size:21px;margin:0;font-weight:700}
-  .sub{color:var(--dim);font-size:13px;margin:0 0 16px;padding-left:43px}
+  .sub{color:var(--dim);font-size:13.5px;margin:0 0 16px;padding-left:43px}
 
+  /* ---------- cards ---------- */
   .card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);
     padding:18px 20px;margin:14px 0;box-shadow:var(--shadow)}
-  .card h3{margin:0 0 10px;font-size:16.5px;color:var(--rose-d);font-weight:700}
-  .card h4{margin:16px 0 6px;font-size:14.5px;color:var(--txt);font-weight:700}
+  .card h3{margin:0 0 10px;font-size:18px;color:var(--rose-d);font-weight:700;
+    line-height:1.5}
+  .card h4{margin:16px 0 6px;font-size:15px;color:var(--txt);font-weight:700}
   .card ul,.card ol{margin:8px 0 0;padding-left:20px}
   .card li{margin:7px 0}
   .card p{margin:7px 0}
@@ -85,75 +135,115 @@
 
   .kv{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
   .kv span{background:var(--tint);border:1px solid var(--line);border-radius:11px;
-    padding:6px 13px;font-size:13.5px;color:var(--txt)}
+    padding:6px 13px;font-size:14px;color:var(--txt)}
 
-  figure{margin:16px 0 4px;background:linear-gradient(160deg,#fffafb,#fdf4f7);
-    border:1px solid var(--line);border-radius:16px;padding:14px}
-  figure svg{width:100%;height:auto;display:block}
-  figcaption{color:var(--dim);font-size:12.5px;margin-top:10px;text-align:center}
+  /* ---------- figures ---------- */
+  figure{margin:16px 0 4px;background:var(--fig-bg);
+    border:1px solid var(--line);border-radius:16px;padding:14px 0 10px;
+    position:relative}
+  .figscroll{overflow-x:auto;-webkit-overflow-scrolling:touch;padding:0 14px;
+    scrollbar-width:none}
+  .figscroll::-webkit-scrollbar{display:none}
+  figure svg{display:block;width:100%;min-width:560px;height:auto}
+  figcaption{color:var(--dim);font-size:13px;margin-top:9px;text-align:center;padding:0 14px}
+  .figzoom{position:absolute;top:8px;right:10px;font-size:11.5px;color:var(--dim);
+    background:var(--paper);border:1px solid var(--line);border-radius:999px;
+    padding:3px 9px;pointer-events:none;opacity:.9}
 
+  /* lightbox */
+  .lb{position:fixed;inset:0;z-index:100;display:none;
+    background:rgba(40,28,34,.93);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+  .lb.on{display:flex;flex-direction:column}
+  .lb-bar{flex:0 0 auto;display:flex;justify-content:space-between;align-items:center;
+    padding:calc(12px + env(safe-area-inset-top)) 18px 10px;color:#fff;font-size:13px}
+  .lb-bar button{background:rgba(255,255,255,.15);border:0;color:#fff;
+    font-family:inherit;font-size:14px;padding:8px 16px;border-radius:999px;cursor:pointer}
+  .lb-bar button:active{transform:scale(.95)}
+  .lb-body{flex:1;overflow:auto;-webkit-overflow-scrolling:touch;
+    display:flex;align-items:center;padding:0 12px calc(20px + env(safe-area-inset-bottom))}
+  .lb-body svg{width:auto;height:auto;min-width:720px;max-width:none;
+    background:#fffafb;border-radius:14px;padding:12px}
+
+  /* ---------- buttons ---------- */
   .btn{display:flex;align-items:center;gap:12px;margin-top:12px;padding:14px 16px;
-    background:linear-gradient(135deg,#ff6b8a,#f0576f);color:#fff;text-decoration:none;
+    background:linear-gradient(135deg,#ff6b8a,#e8455f);color:#fff;text-decoration:none;
     border-radius:15px;font-weight:600;font-size:15px;
-    box-shadow:0 5px 16px rgba(240,87,111,.28)}
-  .btn small{display:block;font-weight:400;font-size:12px;opacity:.94;margin-top:2px}
+    box-shadow:0 5px 16px rgba(232,69,95,.28);transition:transform .1s, opacity .1s}
+  .btn:active{transform:scale(.98);opacity:.9}
+  .btn small{display:block;font-weight:400;font-size:12.5px;opacity:.96;margin-top:2px}
   .btn .ic{font-size:19px}
   .btn.ghost{background:var(--tint);border:1px solid var(--line);color:var(--rose-d);
     box-shadow:none}
   .btn.ghost small{color:var(--dim);opacity:1}
   .time{display:inline-block;background:var(--tint2);color:var(--lav);
-    border-radius:8px;padding:3px 10px;font-size:13px;font-variant-numeric:tabular-nums;
+    border-radius:8px;padding:3px 10px;font-size:13.5px;font-variant-numeric:tabular-nums;
     font-weight:600}
 
-  .tip{border-left:3px solid var(--gold);background:#fffaf0;
-    border-radius:0 13px 13px 0;padding:13px 16px;margin:13px 0;font-size:14.5px}
-  .tip b{color:#c08423}
-  .danger{border-left-color:var(--rose);background:#fff2f5}
-  .danger b{color:var(--rose-d)}
-  .good{border-left-color:var(--mint);background:#f0faf7}
-  .good b{color:#38927b}
+  /* ---------- tips ---------- */
+  .tip{border-left:3px solid var(--gold);background:color-mix(in srgb,var(--gold) 9%, var(--paper));
+    border-radius:0 13px 13px 0;padding:12px 16px 13px;margin:13px 0;font-size:15px}
+  .tip b,.tip strong{color:inherit}
+  .tip::before{content:"💡 小提示";display:block;font-size:11.5px;font-weight:700;
+    letter-spacing:.5px;color:var(--gold);margin-bottom:5px}
+  .danger{border-left-color:var(--alert-line);background:var(--alert-bg)}
+  .danger::before{content:"⚠️ 要注意";color:var(--alert)}
+  .good{border-left-color:var(--mint);background:color-mix(in srgb,var(--mint) 10%, var(--paper))}
+  .good::before{content:"🌿 别担心";color:var(--mint)}
 
+  /* ---------- lists ---------- */
   .steps{counter-reset:s;list-style:none;padding:0;margin:12px 0 0}
   .steps li{counter-increment:s;position:relative;padding-left:36px;margin:11px 0}
   .steps li::before{content:counter(s);position:absolute;left:0;top:3px;width:24px;height:24px;
-    border-radius:50%;background:var(--tint);border:1px solid #f3c6d2;color:var(--rose-d);
+    border-radius:50%;background:var(--tint);border:1px solid var(--rose);color:var(--rose-d);
     font-size:12.5px;display:grid;place-items:center;font-weight:700}
 
   .flow{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
   .flow i{font-style:normal;background:var(--tint);border:1px solid var(--line);
-    border-radius:10px;padding:6px 11px;font-size:13px}
+    border-radius:10px;padding:6px 11px;font-size:13.5px}
   .flow i b{color:var(--rose-d);font-weight:700;margin-right:4px}
 
-  table{width:100%;border-collapse:collapse;margin-top:12px;font-size:14px}
+  table{width:100%;border-collapse:collapse;margin-top:12px;font-size:14.5px}
   th,td{border:1px solid var(--line);padding:10px 11px;text-align:left;vertical-align:top}
-  th{background:var(--tint);color:var(--rose-d);font-weight:700;font-size:13px}
+  th{background:var(--tint);color:var(--rose-d);font-weight:700;font-size:13.5px}
   td b{color:var(--rose-d)}
 
   .gear{display:grid;gap:9px;margin-top:12px}
   .gear div{display:flex;gap:11px;align-items:flex-start;background:var(--tint);
-    border:1px solid var(--line);border-radius:13px;padding:12px 14px;font-size:14.5px}
+    border:1px solid var(--line);border-radius:13px;padding:12px 14px;font-size:15px}
   .gear em{font-style:normal;flex:0 0 auto;font-size:19px}
 
+  /* trap cards (replaces 3-col table on mobile) */
+  .trap{display:grid;gap:12px;margin-top:6px}
+  .trap article{border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .trap h4{margin:0;padding:11px 15px;background:var(--tint);color:var(--rose-d);
+    font-size:15.5px;font-weight:700}
+  .trap .row{padding:11px 15px;font-size:14.5px;line-height:1.75}
+  .trap .row + .row{border-top:1px dashed var(--line)}
+  .trap .row b.lbl{display:block;font-size:11.5px;letter-spacing:.5px;
+    color:var(--dim);font-weight:700;margin-bottom:2px}
+
+  /* ---------- pager ---------- */
   .pager{display:flex;gap:10px;margin:26px 0 8px}
   .pager button{flex:1;border:1px solid var(--line);background:var(--paper);
     color:var(--txt);border-radius:15px;padding:14px 12px;font-family:inherit;
-    font-size:14px;cursor:pointer;transition:.18s;box-shadow:var(--shadow);
-    display:flex;flex-direction:column;gap:2px;text-align:left}
-  .pager button:hover:not(:disabled){border-color:#f3b9c9;transform:translateY(-1px)}
+    font-size:14px;cursor:pointer;box-shadow:var(--shadow);
+    display:flex;flex-direction:column;gap:2px;text-align:left;
+    transition:transform .1s, opacity .1s}
+  .pager button:active:not(:disabled){transform:scale(.98);opacity:.85}
   .pager button:disabled{opacity:.36;cursor:default;box-shadow:none}
-  .pager button span{font-size:11.5px;color:var(--dim)}
+  .pager button span{font-size:12px;color:var(--dim)}
   .pager button b{font-size:14.5px;color:var(--txt);font-weight:600}
   .pager .next{text-align:right}
 
-  .progress{text-align:center;color:var(--dim);font-size:12.5px;margin-top:6px}
+  .progress{text-align:center;color:var(--dim);font-size:13px;margin-top:6px}
 
-  footer{text-align:center;color:var(--dim);font-size:13px;padding:28px 0 6px;
+  footer{text-align:center;color:var(--dim);font-size:13.5px;padding:28px 0 6px;
     border-top:1px solid var(--line);margin-top:28px;line-height:2}
 
   @media (max-width:420px){
     h1{font-size:22px}
     .card{padding:15px 16px}
-    .ptitle h2{font-size:18.5px}
+    .ptitle h2{font-size:19px}
     .sub{padding-left:0;margin-top:8px}
   }
 </style>
@@ -170,24 +260,27 @@
 </header>
 
 <nav class="tabs">
-  <div class="tabs-inner" role="tablist">
-    <button class="tab" role="tab" aria-selected="true"  data-i="0">🏔 开始</button>
-    <button class="tab" role="tab" aria-selected="false" data-i="1">1 · 基础概念</button>
-    <button class="tab" role="tab" aria-selected="false" data-i="2">2 · 安全护具</button>
-    <button class="tab" role="tab" aria-selected="false" data-i="3">3 · 穿雪鞋</button>
-    <button class="tab" role="tab" aria-selected="false" data-i="4">4 · 穿固定器</button>
-    <button class="tab" role="tab" aria-selected="false" data-i="5">5 · 起身与缆车</button>
-    <button class="tab" role="tab" aria-selected="false" data-i="6">6 · 动作路线</button>
-    <button class="tab" role="tab" aria-selected="false" data-i="7">7 · 练习要点</button>
-    <button class="tab" role="tab" aria-selected="false" data-i="8">8 · 换刃陷阱</button>
-    <button class="tab" role="tab" aria-selected="false" data-i="9">💗 女生贴士</button>
+  <div class="tabs-shell">
+    <div class="tabs-inner" role="tablist">
+      <button class="tab" role="tab" aria-selected="true"  data-i="0">🏔 开始</button>
+      <button class="tab" role="tab" aria-selected="false" data-i="1">1 · 基础概念</button>
+      <button class="tab" role="tab" aria-selected="false" data-i="2">2 · 安全护具</button>
+      <button class="tab" role="tab" aria-selected="false" data-i="3">3 · 穿雪鞋</button>
+      <button class="tab" role="tab" aria-selected="false" data-i="4">4 · 穿固定器</button>
+      <button class="tab" role="tab" aria-selected="false" data-i="5">5 · 起身与缆车</button>
+      <button class="tab" role="tab" aria-selected="false" data-i="6">6 · 动作路线</button>
+      <button class="tab" role="tab" aria-selected="false" data-i="7">7 · 练习要点</button>
+      <button class="tab" role="tab" aria-selected="false" data-i="8">8 · 换刃陷阱</button>
+      <button class="tab" role="tab" aria-selected="false" data-i="9">💗 女生贴士</button>
+    </div>
   </div>
+  <div class="rp"><i id="rpBar"></i></div>
 </nav>
 
 <!-- ======================= 0 开始 ======================= -->
 <div class="panel active" data-panel="0">
   <div class="ptitle"><span class="n">♡</span><h2>开始之前</h2></div>
-  <p class="sub">上面的按钮可以直接跳到任何一节，想看哪里就点哪里</p>
+  <p class="sub">上面的按钮可以左右滑动，想看哪一节就点哪里</p>
 
   <a class="btn" href="https://www.xiaohongshu.com/board/6aa7e12b000000000500e896?xhsshare=CopyLink&appuid=61f75a1b00000000100080ee&apptime=1789389131&share_id=f2231754023f4e0687f773570f2d2456" target="_blank" rel="noopener">
     <span class="ic">📕</span><span>小红书专辑 · 全部笔记<small>教程视频都收在这个合集里，可以先收藏起来</small></span>
@@ -197,7 +290,7 @@
     <h3>这份指南怎么用</h3>
     <p>我把单板从零到能连续转弯的路线整理了一遍，每一节都配了图，重点的地方也标好了视频时间点。不用急着一次看完，用到哪里翻到哪里就好。</p>
     <div class="tip">
-      <b>有一句话可以先记住：</b>不管是哪一种转弯，目的都是为了<b>控速、减速和刹车</b>。动作想不明白的时候，就回到这一句，通常就通了。
+      有一句话可以先记住：不管是哪一种转弯，目的都是为了<b>控速、减速和刹车</b>。动作想不明白的时候，就回到这一句，通常就通了。
     </div>
   </div>
 
@@ -209,7 +302,7 @@
       <tr><td><b>下午</b></td><td>后刃落叶飘 → 前刃推坡 →（有余力再碰前刃落叶飘）</td></tr>
     </table>
     <div class="tip good">
-      <b>第一天能做到后刃落叶飘，就已经很棒了。</b>真的不用追换刃，也不用跟别人比 —— 大部分人的换刃都是第二天、第三天才慢慢出来的。
+      第一天能做到<b>后刃落叶飘</b>，就已经很棒了。不用跟别人比 —— 大部分人的换刃都是第二天、第三天才慢慢出来的。
     </div>
   </div>
 
@@ -223,7 +316,7 @@
       <tr><td><b>⚫ 黑道 / 🔴 红道</b></td><td>高级道</td></tr>
     </table>
     <div class="tip danger">
-      <b>第一天就安心待在绿道吧。</b>如果有人说“走啦上去玩”，可以直接说还想在这边再练练 —— 新手受伤最常见的原因，就是上了还没准备好的雪道，然后一路失控往下冲。不着急，慢慢来才走得远。
+      <b>第一天可以安心待在绿道。</b>如果有人说“走啦上去玩”，可以直接说还想在这边再练练 —— 新手受伤最常见的原因，就是上了还没准备好的雪道，然后一路失控往下冲。不着急，慢慢来才走得远。
     </div>
   </div>
 
@@ -263,7 +356,7 @@
   </div>
 
   <div class="tip good">
-    <b>最后想说：</b>学单板一定会摔，这真的很正常，不是你的问题。护具戴齐，慢慢来，第一天能自己滑下来就已经很厉害了。
+    最后想说：学单板一定会摔，这真的很正常，不是你的问题。护具戴齐，慢慢来，<b>第一天能自己滑下来就已经很厉害了</b>。
   </div>
 </div>
 
@@ -280,27 +373,30 @@
   <div class="card">
     <h3>雪板部位与前刃后刃</h3>
     <figure>
-      <svg viewBox="0 0 640 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="雪板俯视图，标注板头板尾前刃后刃">
-        <path d="M70 150 C70 112,96 96,150 94 L490 94 C544 96,570 112,570 150 C570 188,544 204,490 206 L150 206 C96 204,70 188,70 150 Z"
-              fill="#fdeef2" stroke="#e8b9c8" stroke-width="2"/>
-        <path d="M150 94 C260 108,380 108,490 94" fill="none" stroke="#9b8bd0" stroke-width="3.5"/>
-        <path d="M150 206 C260 192,380 192,490 206" fill="none" stroke="#e8778f" stroke-width="3.5"/>
-        <rect x="215" y="118" width="70" height="64" rx="10" fill="#fff" stroke="#d9c3cd" stroke-width="2"/>
-        <rect x="355" y="118" width="70" height="64" rx="10" fill="#fff" stroke="#d9c3cd" stroke-width="2"/>
-        <text x="250" y="156" fill="#9a8791" font-size="13" text-anchor="middle">前脚</text>
-        <text x="390" y="156" fill="#9a8791" font-size="13" text-anchor="middle">后脚</text>
-        <text x="60" y="60" fill="#4b3c44" font-size="15" text-anchor="middle">板尾</text>
-        <text x="60" y="77" fill="#9a8791" font-size="11" text-anchor="middle">tail</text>
-        <line x1="60" y1="85" x2="80" y2="132" stroke="#c9b3bd" stroke-width="1.5"/>
-        <text x="585" y="60" fill="#4b3c44" font-size="15" text-anchor="middle">板头</text>
-        <text x="585" y="77" fill="#9a8791" font-size="11" text-anchor="middle">nose</text>
-        <line x1="585" y1="85" x2="562" y2="132" stroke="#c9b3bd" stroke-width="1.5"/>
-        <text x="320" y="70" fill="#7b68c4" font-size="15" text-anchor="middle" font-weight="bold">前刃（脚尖侧 · toe edge）</text>
-        <line x1="320" y1="78" x2="320" y2="100" stroke="#9b8bd0" stroke-width="1.5"/>
-        <text x="320" y="248" fill="#d15a78" font-size="15" text-anchor="middle" font-weight="bold">后刃（脚跟侧 · heel edge）</text>
-        <line x1="320" y1="232" x2="320" y2="202" stroke="#e8778f" stroke-width="1.5"/>
-        <text x="320" y="286" fill="#9a8791" font-size="12" text-anchor="middle">板身中间收窄的弧线叫“侧切”，转弯时靠它画圆</text>
+      <span class="figzoom">点图看大图</span>
+      <div class="figscroll">
+      <svg viewBox="0 0 640 310" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="雪板俯视图，标注板头板尾前刃后刃">
+        <path d="M70 155 C70 117,96 101,150 99 L490 99 C544 101,570 117,570 155 C570 193,544 209,490 211 L150 211 C96 209,70 193,70 155 Z"
+              fill="#fdeef2" stroke="#d99bb0" stroke-width="2.5"/>
+        <path d="M150 99 C260 113,380 113,490 99" fill="none" stroke="#6f5cb8" stroke-width="4"/>
+        <path d="M150 211 C260 197,380 197,490 211" fill="none" stroke="#d1466a" stroke-width="4"/>
+        <rect x="215" y="123" width="70" height="64" rx="10" fill="#fff" stroke="#b39aa6" stroke-width="2"/>
+        <rect x="355" y="123" width="70" height="64" rx="10" fill="#fff" stroke="#b39aa6" stroke-width="2"/>
+        <text x="250" y="161" fill="#6b5a63" font-size="16" text-anchor="middle">前脚</text>
+        <text x="390" y="161" fill="#6b5a63" font-size="16" text-anchor="middle">后脚</text>
+        <text x="62" y="58" fill="#4b3c44" font-size="18" text-anchor="middle" font-weight="bold">板尾</text>
+        <text x="62" y="76" fill="#6b5a63" font-size="13" text-anchor="middle">tail</text>
+        <line x1="62" y1="84" x2="80" y2="136" stroke="#a88f9c" stroke-width="2"/>
+        <text x="580" y="58" fill="#4b3c44" font-size="18" text-anchor="middle" font-weight="bold">板头</text>
+        <text x="580" y="76" fill="#6b5a63" font-size="13" text-anchor="middle">nose</text>
+        <line x1="580" y1="84" x2="562" y2="136" stroke="#a88f9c" stroke-width="2"/>
+        <text x="320" y="68" fill="#5a47a0" font-size="19" text-anchor="middle" font-weight="bold">前刃（脚尖侧 · toe edge）</text>
+        <line x1="320" y1="76" x2="320" y2="103" stroke="#6f5cb8" stroke-width="2"/>
+        <text x="320" y="258" fill="#b03a5c" font-size="19" text-anchor="middle" font-weight="bold">后刃（脚跟侧 · heel edge）</text>
+        <line x1="320" y1="240" x2="320" y2="207" stroke="#d1466a" stroke-width="2"/>
+        <text x="320" y="296" fill="#6b5a63" font-size="16" text-anchor="middle">板身中间收窄的弧线叫“侧切”，转弯时靠它画圆</text>
       </svg>
+      </div>
       <figcaption>雪板俯视图（图为正脚站位）</figcaption>
     </figure>
     <p>穿上雪板之后：<b>脚尖那一侧是前刃</b>，<b>脚后跟那一侧是后刃</b>。就这么简单。</p>
@@ -309,36 +405,39 @@
   <div class="card">
     <h3>正脚还是反脚（Regular / Goofy）</h3>
     <figure>
-      <svg viewBox="0 0 640 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="正脚与反脚站位对比">
+      <span class="figzoom">点图看大图</span>
+      <div class="figscroll">
+      <svg viewBox="0 0 640 270" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="正脚与反脚站位对比">
         <g>
-          <rect x="30" y="30" width="270" height="200" rx="16" fill="#fff" stroke="#f0dfe4"/>
-          <text x="165" y="58" fill="#7b68c4" font-size="16" text-anchor="middle" font-weight="bold">Regular 正脚</text>
-          <text x="165" y="78" fill="#9a8791" font-size="12" text-anchor="middle">左脚在前</text>
-          <rect x="60" y="150" width="210" height="26" rx="13" fill="#fdeef2" stroke="#e8b9c8"/>
-          <rect x="95" y="152" width="40" height="22" rx="6" fill="#e2d7ea"/>
-          <rect x="195" y="152" width="40" height="22" rx="6" fill="#9b8bd0"/>
-          <text x="115" y="197" fill="#9a8791" font-size="11.5" text-anchor="middle">右（后脚）</text>
-          <text x="215" y="197" fill="#7b68c4" font-size="11.5" text-anchor="middle">左（前脚）</text>
-          <text x="277" y="168" fill="#9a8791" font-size="10.5">板头</text>
-          <line x1="150" y1="120" x2="255" y2="120" stroke="#9a8791" stroke-width="2"/>
-          <path d="M255 120 l-10 -5 l0 10 z" fill="#9a8791"/>
-          <text x="200" y="110" fill="#6e6070" font-size="12" text-anchor="middle">前进方向</text>
+          <rect x="26" y="26" width="278" height="212" rx="16" fill="#fff" stroke="#e5d0d8" stroke-width="1.5"/>
+          <text x="165" y="60" fill="#5a47a0" font-size="19" text-anchor="middle" font-weight="bold">Regular 正脚</text>
+          <text x="165" y="82" fill="#6b5a63" font-size="15" text-anchor="middle">左脚在前</text>
+          <rect x="58" y="152" width="214" height="28" rx="14" fill="#fdeef2" stroke="#d99bb0" stroke-width="1.5"/>
+          <rect x="92" y="154" width="42" height="24" rx="7" fill="#d5c8e4"/>
+          <rect x="196" y="154" width="42" height="24" rx="7" fill="#6f5cb8"/>
+          <text x="113" y="204" fill="#6b5a63" font-size="15" text-anchor="middle">右（后脚）</text>
+          <text x="217" y="204" fill="#5a47a0" font-size="15" text-anchor="middle" font-weight="bold">左（前脚）</text>
+          <text x="278" y="172" fill="#6b5a63" font-size="13">板头</text>
+          <line x1="148" y1="120" x2="256" y2="120" stroke="#6b5a63" stroke-width="2.5"/>
+          <path d="M256 120 l-11 -6 l0 12 z" fill="#6b5a63"/>
+          <text x="202" y="108" fill="#5a4a52" font-size="15" text-anchor="middle">前进方向</text>
         </g>
         <g>
-          <rect x="340" y="30" width="270" height="200" rx="16" fill="#fff" stroke="#f0dfe4"/>
-          <text x="475" y="58" fill="#d15a78" font-size="16" text-anchor="middle" font-weight="bold">Goofy 反脚</text>
-          <text x="475" y="78" fill="#9a8791" font-size="12" text-anchor="middle">右脚在前</text>
-          <rect x="370" y="150" width="210" height="26" rx="13" fill="#fdeef2" stroke="#e8b9c8"/>
-          <rect x="405" y="152" width="40" height="22" rx="6" fill="#f2dbe2"/>
-          <rect x="505" y="152" width="40" height="22" rx="6" fill="#e8778f"/>
-          <text x="425" y="197" fill="#9a8791" font-size="11.5" text-anchor="middle">左（后脚）</text>
-          <text x="525" y="197" fill="#d15a78" font-size="11.5" text-anchor="middle">右（前脚）</text>
-          <text x="587" y="168" fill="#9a8791" font-size="10.5">板头</text>
-          <line x1="460" y1="120" x2="565" y2="120" stroke="#9a8791" stroke-width="2"/>
-          <path d="M565 120 l-10 -5 l0 10 z" fill="#9a8791"/>
-          <text x="510" y="110" fill="#6e6070" font-size="12" text-anchor="middle">前进方向</text>
+          <rect x="336" y="26" width="278" height="212" rx="16" fill="#fff" stroke="#e5d0d8" stroke-width="1.5"/>
+          <text x="475" y="60" fill="#b03a5c" font-size="19" text-anchor="middle" font-weight="bold">Goofy 反脚</text>
+          <text x="475" y="82" fill="#6b5a63" font-size="15" text-anchor="middle">右脚在前</text>
+          <rect x="368" y="152" width="214" height="28" rx="14" fill="#fdeef2" stroke="#d99bb0" stroke-width="1.5"/>
+          <rect x="402" y="154" width="42" height="24" rx="7" fill="#f0cdd8"/>
+          <rect x="506" y="154" width="42" height="24" rx="7" fill="#d1466a"/>
+          <text x="423" y="204" fill="#6b5a63" font-size="15" text-anchor="middle">左（后脚）</text>
+          <text x="527" y="204" fill="#b03a5c" font-size="15" text-anchor="middle" font-weight="bold">右（前脚）</text>
+          <text x="588" y="172" fill="#6b5a63" font-size="13">板头</text>
+          <line x1="458" y1="120" x2="566" y2="120" stroke="#6b5a63" stroke-width="2.5"/>
+          <path d="M566 120 l-11 -6 l0 12 z" fill="#6b5a63"/>
+          <text x="512" y="108" fill="#5a4a52" font-size="15" text-anchor="middle">前进方向</text>
         </g>
       </svg>
+      </div>
       <figcaption>左脚在前是正脚，右脚在前是反脚，没有好坏之分</figcaption>
     </figure>
     <h4>三个判断方法</h4>
@@ -348,39 +447,42 @@
       <li><b>踢球</b>惯用的那只脚，通常是<b>后脚</b>（发力的脚在后面）。</li>
     </ol>
     <div class="tip">
-      <b>不用太纠结这个：</b>玩过滑板、冲浪、长板的话，沿用同一个前脚就行。要是两边都觉得别扭，两边各滑几趟，身体自己会告诉你答案。
+      不用太纠结这个：玩过滑板、冲浪、长板的话，沿用同一个前脚就行。要是两边都觉得别扭，两边各滑几趟，身体自己会告诉你答案。
     </div>
   </div>
 
   <div class="card">
     <h3>固定器角度怎么调</h3>
     <figure>
-      <svg viewBox="0 0 640 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="新手推荐固定器角度示意，板头在右，前脚在板头一侧">
-        <path d="M60 150 C60 116,84 100,132 98 L508 98 C556 100,580 116,580 150 C580 184,556 200,508 202 L132 202 C84 200,60 184,60 150 Z"
-              fill="#fdeef2" stroke="#e8b9c8" stroke-width="2"/>
-        <text x="320" y="86" fill="#7b68c4" font-size="12" text-anchor="middle">前刃（脚尖侧）</text>
-        <text x="320" y="226" fill="#d15a78" font-size="12" text-anchor="middle">后刃（脚跟侧）</text>
-        <text x="36" y="155" fill="#9a8791" font-size="13" text-anchor="middle">板尾</text>
-        <text x="606" y="155" fill="#4b3c44" font-size="13" text-anchor="middle">板头</text>
-        <line x1="230" y1="96" x2="230" y2="204" stroke="#d9c3cd" stroke-width="1.5" stroke-dasharray="4 4"/>
-        <g transform="translate(230,150) rotate(-6)">
-          <rect x="-18" y="-42" width="36" height="84" rx="9" fill="#fff" stroke="#e8778f" stroke-width="2.5"/>
-          <circle cx="0" cy="-26" r="4" fill="#e8778f"/>
+      <span class="figzoom">点图看大图</span>
+      <div class="figscroll">
+      <svg viewBox="0 0 640 310" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="新手推荐固定器角度示意，板头在右，前脚在板头一侧">
+        <path d="M60 155 C60 121,84 105,132 103 L508 103 C556 105,580 121,580 155 C580 189,556 205,508 207 L132 207 C84 205,60 189,60 155 Z"
+              fill="#fdeef2" stroke="#d99bb0" stroke-width="2.5"/>
+        <text x="320" y="90" fill="#5a47a0" font-size="15" text-anchor="middle">前刃（脚尖侧）</text>
+        <text x="320" y="234" fill="#b03a5c" font-size="15" text-anchor="middle">后刃（脚跟侧）</text>
+        <text x="32" y="161" fill="#6b5a63" font-size="16" text-anchor="middle">板尾</text>
+        <text x="608" y="161" fill="#4b3c44" font-size="16" text-anchor="middle" font-weight="bold">板头</text>
+        <line x1="230" y1="101" x2="230" y2="209" stroke="#c0a8b3" stroke-width="2" stroke-dasharray="5 5"/>
+        <g transform="translate(230,155) rotate(-6)">
+          <rect x="-19" y="-44" width="38" height="88" rx="9" fill="#fff" stroke="#d1466a" stroke-width="3"/>
+          <circle cx="0" cy="-27" r="5" fill="#d1466a"/>
         </g>
-        <text x="230" y="58" fill="#d15a78" font-size="17" text-anchor="middle" font-weight="bold">0° ~ -6°</text>
-        <text x="230" y="256" fill="#4b3c44" font-size="13" text-anchor="middle">后脚</text>
-        <text x="230" y="275" fill="#9a8791" font-size="11.5" text-anchor="middle">正对，或脚尖微微朝板尾</text>
-        <line x1="420" y1="96" x2="420" y2="204" stroke="#d9c3cd" stroke-width="1.5" stroke-dasharray="4 4"/>
-        <g transform="translate(420,150) rotate(15)">
-          <rect x="-18" y="-42" width="36" height="84" rx="9" fill="#fff" stroke="#9b8bd0" stroke-width="2.5"/>
-          <circle cx="0" cy="-26" r="4" fill="#9b8bd0"/>
+        <text x="230" y="56" fill="#b03a5c" font-size="20" text-anchor="middle" font-weight="bold">0° ~ -6°</text>
+        <text x="230" y="266" fill="#4b3c44" font-size="16" text-anchor="middle" font-weight="bold">后脚</text>
+        <text x="230" y="288" fill="#6b5a63" font-size="14" text-anchor="middle">正对，或脚尖微微朝板尾</text>
+        <line x1="420" y1="101" x2="420" y2="209" stroke="#c0a8b3" stroke-width="2" stroke-dasharray="5 5"/>
+        <g transform="translate(420,155) rotate(15)">
+          <rect x="-19" y="-44" width="38" height="88" rx="9" fill="#fff" stroke="#6f5cb8" stroke-width="3"/>
+          <circle cx="0" cy="-27" r="5" fill="#6f5cb8"/>
         </g>
-        <text x="420" y="58" fill="#7b68c4" font-size="17" text-anchor="middle" font-weight="bold">+15°</text>
-        <text x="420" y="256" fill="#4b3c44" font-size="13" text-anchor="middle">前脚</text>
-        <text x="420" y="275" fill="#9a8791" font-size="11.5" text-anchor="middle">脚尖明显朝板头</text>
-        <circle cx="516" cy="250" r="4" fill="#b9a6b1"/>
-        <text x="526" y="255" fill="#9a8791" font-size="11">＝脚尖方向</text>
+        <text x="420" y="56" fill="#5a47a0" font-size="20" text-anchor="middle" font-weight="bold">+15°</text>
+        <text x="420" y="266" fill="#4b3c44" font-size="16" text-anchor="middle" font-weight="bold">前脚</text>
+        <text x="420" y="288" fill="#6b5a63" font-size="14" text-anchor="middle">脚尖明显朝板头</text>
+        <circle cx="528" cy="262" r="5" fill="#8d7b86"/>
+        <text x="540" y="267" fill="#6b5a63" font-size="14">＝脚尖方向</text>
       </svg>
+      </div>
       <figcaption>新手常见的起始角度之一</figcaption>
     </figure>
 
@@ -398,116 +500,125 @@
       </tr>
     </table>
     <div class="tip good">
-      <b>结论是：新手阶段这两者的差别很小，你几乎感觉不出来。</b>所以不用自己纠结，让教练按你的身高、腿长和柔韧度设一个就好。如果之后想自己微调，一次动 3° 左右，滑两三天再决定。
+      <b>新手阶段这两者的差别很小，你几乎感觉不出来。</b>所以不用自己纠结，让教练按你的身高、腿长和柔韧度设一个就好。如果之后想自己微调，一次动 3° 左右，滑两三天再决定。
     </div>
   </div>
 
   <div class="card">
     <h3>滚落线（Fall Line）</h3>
     <figure>
-      <svg viewBox="0 0 640 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="滚落线示意图">
-        <rect x="40" y="30" width="560" height="240" rx="14" fill="#fff" stroke="#f0dfe4"/>
-        <g stroke="#ece0e6" stroke-width="1.6" fill="none">
-          <path d="M60 80 C200 66,440 94,580 80"/>
-          <path d="M60 130 C200 116,440 144,580 130"/>
-          <path d="M60 180 C200 166,440 194,580 180"/>
-          <path d="M60 230 C200 216,440 244,580 230"/>
+      <span class="figzoom">点图看大图</span>
+      <div class="figscroll">
+      <svg viewBox="0 0 640 310" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="滚落线示意图">
+        <rect x="40" y="26" width="560" height="244" rx="14" fill="#fff" stroke="#e5d0d8" stroke-width="1.5"/>
+        <g stroke="#e0cfd8" stroke-width="2" fill="none">
+          <path d="M60 78 C200 64,440 92,580 78"/>
+          <path d="M60 128 C200 114,440 142,580 128"/>
+          <path d="M60 178 C200 164,440 192,580 178"/>
+          <path d="M60 228 C200 214,440 242,580 228"/>
         </g>
-        <text x="72" y="72" fill="#c2adb7" font-size="11">等高线</text>
-        <line x1="320" y1="52" x2="320" y2="252" stroke="#d99b3f" stroke-width="3.5" stroke-dasharray="10 7"/>
-        <path d="M320 262 l-9 -14 l18 0 z" fill="#d99b3f"/>
-        <text x="338" y="150" fill="#c08423" font-size="16" font-weight="bold">滚落线</text>
-        <text x="338" y="170" fill="#9a8791" font-size="12">球放这里会直着滚下去</text>
-        <circle cx="320" cy="62" r="8" fill="#d99b3f"/>
-        <text x="320" y="288" fill="#9a8791" font-size="12" text-anchor="middle">教程里说的“朝山下”= 朝滚落线，不一定等于雪道的方向</text>
-        <text x="66" y="258" fill="#c2adb7" font-size="12">山下 ↓</text>
+        <text x="74" y="68" fill="#8d7b86" font-size="14">等高线</text>
+        <line x1="320" y1="48" x2="320" y2="250" stroke="#d99b3f" stroke-width="4" stroke-dasharray="11 8"/>
+        <path d="M320 262 l-10 -15 l20 0 z" fill="#d99b3f"/>
+        <text x="340" y="148" fill="#8a5e14" font-size="19" font-weight="bold">滚落线</text>
+        <text x="340" y="170" fill="#6b5a63" font-size="15">球放这里会直着滚下去</text>
+        <circle cx="320" cy="58" r="9" fill="#d99b3f"/>
+        <text x="320" y="296" fill="#6b5a63" font-size="16" text-anchor="middle">教程里说的“朝山下”= 朝滚落线，不一定等于雪道的方向</text>
+        <text x="68" y="256" fill="#8d7b86" font-size="15">山下 ↓</text>
       </svg>
+      </div>
       <figcaption>坡面上最陡的那条线</figcaption>
     </figure>
     <p>把球放在坡上，它自己滚下去的那条路线，就是<b>滚落线</b>。教学里讲的“板头朝山下”，说的都是这条线。</p>
     <div class="tip">
-      <b>为什么要知道这个：</b>雪道常常是斜着修的，你以为的“正下方”和真正的滚落线可能差了几十度。速度忽快忽慢、转弯总是转不过来，很多时候只是因为参照错了，不是动作有问题。
+      为什么要知道这个：雪道常常是斜着修的，你以为的“正下方”和真正的滚落线可能差了几十度。速度忽快忽慢、转弯总是转不过来，很多时候只是因为参照错了，<b>不是动作有问题</b>。
     </div>
   </div>
 
   <div class="card">
     <h3>卡刃（Catching an Edge）</h3>
     <figure>
-      <svg viewBox="0 0 640 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="卡刃原理剖面图">
+      <span class="figzoom">点图看大图</span>
+      <div class="figscroll">
+      <svg viewBox="0 0 640 270" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="卡刃原理剖面图">
         <g>
-          <rect x="30" y="30" width="270" height="200" rx="16" fill="#fff" stroke="#f0dfe4"/>
-          <text x="165" y="58" fill="#38927b" font-size="15" text-anchor="middle" font-weight="bold">✓ 板底完全放平</text>
-          <rect x="60" y="160" width="210" height="34" fill="#f4f8f7"/>
-          <line x1="60" y1="160" x2="270" y2="160" stroke="#bfd6cf" stroke-width="2"/>
-          <rect x="95" y="146" width="140" height="14" rx="4" fill="#fdeef2" stroke="#4fb79c" stroke-width="2"/>
-          <text x="165" y="216" fill="#6e6070" font-size="12" text-anchor="middle">整个板面贴雪，可以安全直行</text>
+          <rect x="26" y="26" width="278" height="212" rx="16" fill="#fff" stroke="#e5d0d8" stroke-width="1.5"/>
+          <text x="165" y="60" fill="#25705c" font-size="17" text-anchor="middle" font-weight="bold">✓ 板底完全放平</text>
+          <rect x="58" y="164" width="214" height="36" fill="#eef6f3"/>
+          <line x1="58" y1="164" x2="272" y2="164" stroke="#a8cabe" stroke-width="2.5"/>
+          <rect x="94" y="149" width="142" height="15" rx="4" fill="#fdeef2" stroke="#2d7a66" stroke-width="2.5"/>
+          <text x="165" y="222" fill="#5a4a52" font-size="15" text-anchor="middle">整个板面贴雪，可以安全直行</text>
         </g>
         <g>
-          <rect x="340" y="30" width="270" height="200" rx="16" fill="#fff" stroke="#f0dfe4"/>
-          <text x="475" y="58" fill="#d15a78" font-size="15" text-anchor="middle" font-weight="bold">✗ 山下侧刃吃进雪里</text>
-          <rect x="370" y="160" width="210" height="34" fill="#faf5f6"/>
-          <line x1="370" y1="160" x2="580" y2="160" stroke="#dcc7cf" stroke-width="2"/>
-          <g transform="translate(475,152) rotate(13)">
-            <rect x="-70" y="-7" width="140" height="14" rx="4" fill="#fdeef2" stroke="#e8778f" stroke-width="2"/>
+          <rect x="336" y="26" width="278" height="212" rx="16" fill="#fff" stroke="#e5d0d8" stroke-width="1.5"/>
+          <text x="475" y="60" fill="#b03a5c" font-size="17" text-anchor="middle" font-weight="bold">✗ 山下侧刃吃进雪里</text>
+          <rect x="368" y="164" width="214" height="36" fill="#faf0f2"/>
+          <line x1="368" y1="164" x2="582" y2="164" stroke="#d6b6c0" stroke-width="2.5"/>
+          <g transform="translate(475,156) rotate(13)">
+            <rect x="-71" y="-8" width="142" height="15" rx="4" fill="#fdeef2" stroke="#d1466a" stroke-width="2.5"/>
           </g>
-          <circle cx="545" cy="170" r="14" fill="none" stroke="#e8778f" stroke-width="2"/>
-          <path d="M556 181 l16 16" stroke="#e8778f" stroke-width="2"/>
-          <text x="475" y="216" fill="#d15a78" font-size="12" text-anchor="middle">板刃被雪咬住 → 人被瞬间甩出去</text>
+          <circle cx="546" cy="174" r="15" fill="none" stroke="#d1466a" stroke-width="2.5"/>
+          <path d="M558 186 l16 16" stroke="#d1466a" stroke-width="2.5"/>
+          <text x="475" y="222" fill="#b03a5c" font-size="15" text-anchor="middle">板刃被雪咬住 → 人被瞬间甩出去</text>
         </g>
       </svg>
+      </div>
       <figcaption>单板最常见的受伤原因</figcaption>
     </figure>
     <p>山下那一侧的板刃突然吃进雪里，板子被卡住、人还在往前，于是整个人被甩向地面 —— 这就是<b>卡刃</b>，也是单板受伤最主要的原因。</p>
     <div class="tip danger">
-      <b>这一条记住就好：</b>后面讲换刃的时候会反复强调“一定要有一个把板放平的过程”，就是为了避开卡刃。新手立刃太早，几乎都会摔。
+      这一条记住就好：后面讲换刃的时候会反复强调<b>“一定要有一个把板放平的过程”</b>，就是为了避开卡刃。新手立刃太早，几乎都会摔。
     </div>
   </div>
 
   <div class="card">
     <h3>三种基础站姿</h3>
     <figure>
-      <svg viewBox="0 0 640 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="平板、后刃、前刃三种基础站姿侧面对比">
+      <span class="figzoom">点图看大图</span>
+      <div class="figscroll">
+      <svg viewBox="0 0 640 310" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="平板、后刃、前刃三种基础站姿侧面对比">
         <g>
-          <rect x="20" y="24" width="190" height="252" rx="16" fill="#fff" stroke="#f0dfe4"/>
-          <text x="115" y="50" fill="#4b3c44" font-size="14" text-anchor="middle" font-weight="bold">平板站姿</text>
-          <line x1="50" y1="238" x2="180" y2="238" stroke="#dcc7cf" stroke-width="2"/>
-          <rect x="70" y="228" width="90" height="10" rx="4" fill="#fdeef2" stroke="#d9c3cd"/>
-          <circle cx="115" cy="92" r="14" fill="#fdeef2" stroke="#9a8791" stroke-width="1.5"/>
-          <path d="M115 106 L115 160" stroke="#6e6070" stroke-width="3"/>
-          <path d="M115 160 L103 200 L100 228" stroke="#6e6070" stroke-width="3" fill="none"/>
-          <path d="M115 160 L130 200 L133 228" stroke="#6e6070" stroke-width="3" fill="none"/>
-          <line x1="115" y1="70" x2="115" y2="240" stroke="#b9a6b1" stroke-width="1.5" stroke-dasharray="4 4"/>
-          <text x="115" y="264" fill="#6e6070" font-size="11.5" text-anchor="middle">重心在板中线</text>
+          <rect x="16" y="22" width="196" height="258" rx="16" fill="#fff" stroke="#e5d0d8" stroke-width="1.5"/>
+          <text x="114" y="52" fill="#4b3c44" font-size="17" text-anchor="middle" font-weight="bold">平板站姿</text>
+          <line x1="46" y1="240" x2="182" y2="240" stroke="#d6b6c0" stroke-width="2.5"/>
+          <rect x="68" y="230" width="92" height="10" rx="4" fill="#fdeef2" stroke="#b39aa6" stroke-width="1.5"/>
+          <circle cx="114" cy="96" r="15" fill="#fdeef2" stroke="#7d6b75" stroke-width="2"/>
+          <path d="M114 111 L114 164" stroke="#5a4a52" stroke-width="3.5"/>
+          <path d="M114 164 L102 204 L99 230" stroke="#5a4a52" stroke-width="3.5" fill="none"/>
+          <path d="M114 164 L129 204 L132 230" stroke="#5a4a52" stroke-width="3.5" fill="none"/>
+          <line x1="114" y1="74" x2="114" y2="242" stroke="#a88f9c" stroke-width="2" stroke-dasharray="5 5"/>
+          <text x="114" y="268" fill="#5a4a52" font-size="14" text-anchor="middle">重心在板中线</text>
         </g>
         <g>
-          <rect x="225" y="24" width="190" height="252" rx="16" fill="#fff" stroke="#f0dfe4"/>
-          <text x="320" y="50" fill="#d15a78" font-size="14" text-anchor="middle" font-weight="bold">后刃站姿</text>
-          <line x1="255" y1="238" x2="385" y2="238" stroke="#dcc7cf" stroke-width="2"/>
-          <g transform="translate(320,233) rotate(-10)">
-            <rect x="-45" y="-5" width="90" height="10" rx="4" fill="#fdeef2" stroke="#e8778f" stroke-width="1.5"/>
+          <rect x="222" y="22" width="196" height="258" rx="16" fill="#fff" stroke="#e5d0d8" stroke-width="1.5"/>
+          <text x="320" y="52" fill="#b03a5c" font-size="17" text-anchor="middle" font-weight="bold">后刃站姿</text>
+          <line x1="252" y1="240" x2="388" y2="240" stroke="#d6b6c0" stroke-width="2.5"/>
+          <g transform="translate(320,235) rotate(-10)">
+            <rect x="-46" y="-5" width="92" height="10" rx="4" fill="#fdeef2" stroke="#d1466a" stroke-width="2"/>
           </g>
-          <circle cx="306" cy="92" r="14" fill="#fdeef2" stroke="#9a8791" stroke-width="1.5"/>
-          <path d="M306 106 L308 160" stroke="#6e6070" stroke-width="3"/>
-          <path d="M308 160 L300 200 L300 226" stroke="#6e6070" stroke-width="3" fill="none"/>
-          <path d="M308 160 L325 198 L330 224" stroke="#6e6070" stroke-width="3" fill="none"/>
-          <line x1="306" y1="70" x2="306" y2="240" stroke="#e8778f" stroke-width="1.5" stroke-dasharray="4 4"/>
-          <text x="320" y="264" fill="#d15a78" font-size="11.5" text-anchor="middle">重心移向脚跟</text>
+          <circle cx="306" cy="96" r="15" fill="#fdeef2" stroke="#7d6b75" stroke-width="2"/>
+          <path d="M306 111 L308 164" stroke="#5a4a52" stroke-width="3.5"/>
+          <path d="M308 164 L300 204 L300 228" stroke="#5a4a52" stroke-width="3.5" fill="none"/>
+          <path d="M308 164 L325 202 L330 226" stroke="#5a4a52" stroke-width="3.5" fill="none"/>
+          <line x1="306" y1="74" x2="306" y2="242" stroke="#d1466a" stroke-width="2" stroke-dasharray="5 5"/>
+          <text x="320" y="268" fill="#b03a5c" font-size="14" text-anchor="middle">重心移向脚跟</text>
         </g>
         <g>
-          <rect x="430" y="24" width="190" height="252" rx="16" fill="#fff" stroke="#f0dfe4"/>
-          <text x="525" y="50" fill="#7b68c4" font-size="14" text-anchor="middle" font-weight="bold">前刃站姿</text>
-          <line x1="460" y1="238" x2="590" y2="238" stroke="#dcc7cf" stroke-width="2"/>
-          <g transform="translate(525,233) rotate(10)">
-            <rect x="-45" y="-5" width="90" height="10" rx="4" fill="#fdeef2" stroke="#9b8bd0" stroke-width="1.5"/>
+          <rect x="428" y="22" width="196" height="258" rx="16" fill="#fff" stroke="#e5d0d8" stroke-width="1.5"/>
+          <text x="526" y="52" fill="#5a47a0" font-size="17" text-anchor="middle" font-weight="bold">前刃站姿</text>
+          <line x1="458" y1="240" x2="594" y2="240" stroke="#d6b6c0" stroke-width="2.5"/>
+          <g transform="translate(526,235) rotate(10)">
+            <rect x="-46" y="-5" width="92" height="10" rx="4" fill="#fdeef2" stroke="#6f5cb8" stroke-width="2"/>
           </g>
-          <circle cx="540" cy="92" r="14" fill="#fdeef2" stroke="#9a8791" stroke-width="1.5"/>
-          <path d="M540 106 L536 160" stroke="#6e6070" stroke-width="3"/>
-          <path d="M536 160 L528 198 L522 224" stroke="#6e6070" stroke-width="3" fill="none"/>
-          <path d="M536 160 L550 200 L552 226" stroke="#6e6070" stroke-width="3" fill="none"/>
-          <line x1="540" y1="70" x2="540" y2="240" stroke="#9b8bd0" stroke-width="1.5" stroke-dasharray="4 4"/>
-          <text x="525" y="264" fill="#7b68c4" font-size="11.5" text-anchor="middle">重心移向脚尖 · 顶胯</text>
+          <circle cx="541" cy="96" r="15" fill="#fdeef2" stroke="#7d6b75" stroke-width="2"/>
+          <path d="M541 111 L537 164" stroke="#5a4a52" stroke-width="3.5"/>
+          <path d="M537 164 L529 202 L523 226" stroke="#5a4a52" stroke-width="3.5" fill="none"/>
+          <path d="M537 164 L551 204 L553 228" stroke="#5a4a52" stroke-width="3.5" fill="none"/>
+          <line x1="541" y1="74" x2="541" y2="242" stroke="#6f5cb8" stroke-width="2" stroke-dasharray="5 5"/>
+          <text x="526" y="268" fill="#5a47a0" font-size="14" text-anchor="middle">重心移向脚尖 · 顶胯</text>
         </g>
       </svg>
+      </div>
       <figcaption>三种站姿的差别，只在重心位置和视线</figcaption>
     </figure>
     <h4>共同要求：三线平行同面</h4>
@@ -519,12 +630,12 @@
       <tr><td>前刃</td><td>移向前刃线，顶胯、肩部前倾</td><td>抬头看山上</td></tr>
     </table>
     <div class="tip danger">
-      <b>最容易出问题的不是“膝盖弯太多”，而是“折髋”。</b>这两件事要分清楚：<b>屈膝屈踝</b>是对的，<b>弯腰撅屁股（折髋）</b>才是要避开的。
+      最容易出问题的不是“膝盖弯太多”，而是<b>“折髋”</b>。这两件事要分清楚：<b>屈膝屈踝</b>是对的，<b>弯腰撅屁股</b>才是要避开的。
       <br><br>
-      膝盖和脚踝要<b>充分弯</b>，像准备坐下的那一瞬间；但上半身<b>不要往前折</b>，胸口朝着前进方向，而不是朝着地面。
+      膝盖和脚踝要充分弯，像准备坐下的那一瞬间；但上半身<b>不要往前折</b>，胸口朝着前进方向，而不是朝着地面。
     </div>
     <div class="tip">
-      <b>两个小自检：</b>低头如果看不到自己的脚尖，说明脚踝弯得还不够；胸口朝地、屁股翘在后面，就是折髋了。把胸抬起来，让弯曲发生在膝盖和脚踝上就好。
+      两个小自检：低头如果<b>看不到自己的脚尖</b>，说明脚踝弯得还不够；<b>胸口朝地、屁股翘在后面</b>，就是折髋了。把胸抬起来，让弯曲发生在膝盖和脚踝上就好。
     </div>
   </div>
 
@@ -536,65 +647,68 @@
       <div><em>🦶</em><span><b>后刃：</b>小腿肚<b>压住固定器高背板</b>的挤压感越强，说明重心越靠后。重心回到板中，挤压感同样会释放。</span></div>
     </div>
     <div class="tip">
-      <b>小自检：</b>做后刃动作的时候，如果完全感觉不到小腿肚被高背板顶住，那其实只是在“弯膝盖”，重心还没真的移过去 —— 板子自然也就不太听话。
+      小自检：做后刃动作的时候，如果完全感觉不到小腿肚被高背板顶住，那其实<b>只是在“弯膝盖”</b>，重心还没真的移过去 —— 板子自然也就不太听话。
     </div>
   </div>
 
   <div class="card">
     <h3>弯型术语：J / C / S</h3>
     <figure>
-      <svg viewBox="0 0 640 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="J弯C弯S弯轨迹对比图">
-        <rect x="14" y="20" width="612" height="310" rx="16" fill="#fff" stroke="#f0dfe4"/>
-        <text x="320" y="46" fill="#9a8791" font-size="12" text-anchor="middle">↓ 山下方向（滚落线）</text>
+      <span class="figzoom">点图看大图</span>
+      <div class="figscroll">
+      <svg viewBox="0 0 640 392" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="J弯C弯S弯轨迹对比图">
+        <rect x="14" y="18" width="612" height="314" rx="16" fill="#fff" stroke="#e5d0d8" stroke-width="1.5"/>
+        <text x="320" y="44" fill="#6b5a63" font-size="15" text-anchor="middle">↓ 山下方向（滚落线）</text>
 
         <g>
-          <circle cx="110" cy="72" r="5" fill="#d99b3f"/>
-          <path d="M110 72 L110 160" fill="none" stroke="#d99b3f" stroke-width="3.5"
-                stroke-linecap="round" stroke-dasharray="9 7"/>
-          <path d="M110 160 C110 212,134 240,174 245" fill="none" stroke="#e8778f"
-                stroke-width="3.5" stroke-linecap="round"/>
-          <path d="M0 0 l-13 -5 l0 10 z" fill="#e8778f" transform="translate(174,245) rotate(7)"/>
-          <text x="105" y="294" fill="#4b3c44" font-size="15" text-anchor="middle" font-weight="bold">J 弯</text>
-          <text x="105" y="312" fill="#9a8791" font-size="11" text-anchor="middle">直板下滑后转上山停住</text>
+          <circle cx="110" cy="70" r="6" fill="#d99b3f"/>
+          <path d="M110 70 L110 158" fill="none" stroke="#d99b3f" stroke-width="4.5"
+                stroke-linecap="round" stroke-dasharray="10 8"/>
+          <path d="M110 158 C110 210,134 238,174 243" fill="none" stroke="#d1466a"
+                stroke-width="4.5" stroke-linecap="round"/>
+          <path d="M0 0 l-14 -6 l0 12 z" fill="#d1466a" transform="translate(176,243) rotate(7)"/>
+          <text x="105" y="296" fill="#4b3c44" font-size="18" text-anchor="middle" font-weight="bold">J 弯</text>
+          <text x="105" y="318" fill="#6b5a63" font-size="14" text-anchor="middle">直板下滑后转上山停住</text>
         </g>
 
         <g>
-          <circle cx="386" cy="72" r="5" fill="#e8778f"/>
-          <path d="M386 72 L322 116" fill="none" stroke="#e8778f" stroke-width="3.5" stroke-linecap="round"/>
-          <path d="M322 116 C292 138,284 170,300 196" fill="none" stroke="#d99b3f"
-                stroke-width="3.5" stroke-linecap="round" stroke-dasharray="9 7"/>
-          <path d="M300 196 L366 238" fill="none" stroke="#9b8bd0" stroke-width="3.5" stroke-linecap="round"/>
-          <path d="M0 0 l-13 -5 l0 10 z" fill="#9b8bd0" transform="translate(366,238) rotate(33)"/>
-          <circle cx="294" cy="155" r="6" fill="#fff" stroke="#d99b3f" stroke-width="2.5"/>
-          <text x="281" y="159" fill="#c08423" font-size="11" text-anchor="end">换刃</text>
-          <text x="290" y="294" fill="#4b3c44" font-size="15" text-anchor="middle" font-weight="bold">C 弯</text>
-          <text x="290" y="312" fill="#9a8791" font-size="11" text-anchor="middle">后刃斜滑降 → 放平 → 前刃斜滑降</text>
+          <circle cx="386" cy="70" r="6" fill="#d1466a"/>
+          <path d="M386 70 L322 114" fill="none" stroke="#d1466a" stroke-width="4.5" stroke-linecap="round"/>
+          <path d="M322 114 C292 136,284 168,300 194" fill="none" stroke="#d99b3f"
+                stroke-width="4.5" stroke-linecap="round" stroke-dasharray="10 8"/>
+          <path d="M300 194 L366 236" fill="none" stroke="#6f5cb8" stroke-width="4.5" stroke-linecap="round"/>
+          <path d="M0 0 l-14 -6 l0 12 z" fill="#6f5cb8" transform="translate(368,237) rotate(33)"/>
+          <circle cx="294" cy="153" r="7" fill="#fff" stroke="#d99b3f" stroke-width="3"/>
+          <text x="279" y="158" fill="#8a5e14" font-size="14" text-anchor="end" font-weight="bold">换刃</text>
+          <text x="290" y="296" fill="#4b3c44" font-size="18" text-anchor="middle" font-weight="bold">C 弯</text>
+          <text x="290" y="318" fill="#6b5a63" font-size="14" text-anchor="middle">后刃斜滑降 → 放平 → 前刃斜滑降</text>
         </g>
 
         <g>
-          <circle cx="596" cy="68" r="5" fill="#e8778f"/>
-          <path d="M596 68 L550 96" fill="none" stroke="#e8778f" stroke-width="3.5" stroke-linecap="round"/>
-          <path d="M550 96 C524 112,521 138,541 154" fill="none" stroke="#d99b3f"
-                stroke-width="3.5" stroke-linecap="round" stroke-dasharray="9 7"/>
-          <path d="M541 154 L590 182" fill="none" stroke="#9b8bd0" stroke-width="3.5" stroke-linecap="round"/>
-          <path d="M590 182 C610 198,606 226,578 241" fill="none" stroke="#d99b3f"
-                stroke-width="3.5" stroke-linecap="round" stroke-dasharray="9 7"/>
-          <path d="M578 241 L524 266" fill="none" stroke="#e8778f" stroke-width="3.5" stroke-linecap="round"/>
-          <path d="M0 0 l-13 -5 l0 10 z" fill="#e8778f" transform="translate(524,266) rotate(155)"/>
-          <circle cx="528" cy="125" r="6" fill="#fff" stroke="#d99b3f" stroke-width="2.5"/>
-          <circle cx="602" cy="212" r="6" fill="#fff" stroke="#d99b3f" stroke-width="2.5"/>
-          <text x="555" y="294" fill="#4b3c44" font-size="15" text-anchor="middle" font-weight="bold">S 弯</text>
-          <text x="555" y="312" fill="#9a8791" font-size="11" text-anchor="middle">连续换两次刃</text>
+          <circle cx="596" cy="66" r="6" fill="#d1466a"/>
+          <path d="M596 66 L550 94" fill="none" stroke="#d1466a" stroke-width="4.5" stroke-linecap="round"/>
+          <path d="M550 94 C524 110,521 136,541 152" fill="none" stroke="#d99b3f"
+                stroke-width="4.5" stroke-linecap="round" stroke-dasharray="10 8"/>
+          <path d="M541 152 L590 180" fill="none" stroke="#6f5cb8" stroke-width="4.5" stroke-linecap="round"/>
+          <path d="M590 180 C610 196,606 224,578 239" fill="none" stroke="#d99b3f"
+                stroke-width="4.5" stroke-linecap="round" stroke-dasharray="10 8"/>
+          <path d="M578 239 L524 264" fill="none" stroke="#d1466a" stroke-width="4.5" stroke-linecap="round"/>
+          <path d="M0 0 l-14 -6 l0 12 z" fill="#d1466a" transform="translate(522,265) rotate(155)"/>
+          <circle cx="528" cy="123" r="7" fill="#fff" stroke="#d99b3f" stroke-width="3"/>
+          <circle cx="602" cy="210" r="7" fill="#fff" stroke="#d99b3f" stroke-width="3"/>
+          <text x="555" y="296" fill="#4b3c44" font-size="18" text-anchor="middle" font-weight="bold">S 弯</text>
+          <text x="555" y="318" fill="#6b5a63" font-size="14" text-anchor="middle">连续换两次刃</text>
         </g>
 
-        <line x1="130" y1="358" x2="160" y2="358" stroke="#e8778f" stroke-width="3.5" stroke-linecap="round"/>
-        <text x="168" y="363" fill="#6e6070" font-size="12">后刃</text>
-        <line x1="228" y1="358" x2="258" y2="358" stroke="#9b8bd0" stroke-width="3.5" stroke-linecap="round"/>
-        <text x="266" y="363" fill="#6e6070" font-size="12">前刃</text>
-        <line x1="326" y1="358" x2="356" y2="358" stroke="#d99b3f" stroke-width="3.5"
-              stroke-linecap="round" stroke-dasharray="9 7"/>
-        <text x="364" y="363" fill="#6e6070" font-size="12">板放平 ＝ 换刃瞬间</text>
+        <line x1="96" y1="366" x2="128" y2="366" stroke="#d1466a" stroke-width="4.5" stroke-linecap="round"/>
+        <text x="136" y="372" fill="#5a4a52" font-size="15">后刃</text>
+        <line x1="204" y1="366" x2="236" y2="366" stroke="#6f5cb8" stroke-width="4.5" stroke-linecap="round"/>
+        <text x="244" y="372" fill="#5a4a52" font-size="15">前刃</text>
+        <line x1="312" y1="366" x2="344" y2="366" stroke="#d99b3f" stroke-width="4.5"
+              stroke-linecap="round" stroke-dasharray="10 8"/>
+        <text x="352" y="372" fill="#5a4a52" font-size="15">板放平 ＝ 换刃瞬间</text>
       </svg>
+      </div>
       <figcaption>颜色变化的地方，就是刃在切换</figcaption>
     </figure>
     <div class="flow">
@@ -614,11 +728,11 @@
     <h3>护具分级</h3>
     <div class="gear">
       <div><em>⛑️</em><span><b>头盔，一定要戴。</b>没有例外。记得在下巴那里扣紧，不然一摔头盔就飞了，就等于没戴。</span></div>
-      <div><em>🍑</em><span><b>护臀和护膝，很推荐。</b>这两处是摔倒时最常着地的地方，尾椎要是伤到了会难受很久。</span></div>
+      <div><em>🛡</em><span><b>护臀和护膝，很推荐。</b>这两处是摔倒时最常着地的地方，尾椎要是伤到了会难受很久。</span></div>
       <div><em>🤚</em><span><b>护腕，建议戴。</b>单板没有雪杖，摔倒时会本能用手撑地，手腕是最容易受伤的地方。</span></div>
     </div>
     <div class="tip">
-      <b>选护腕看这一点：</b>要选<b>内置硬质支撑条</b>的款式，它能限制手腕过度后仰、把冲击力分散到前臂。纯软垫的其实只是心理安慰。另外护腕要<b>贴身戴在手套里面</b>，戴外面容易移位。
+      选护腕看这一点：要选<b>内置硬质支撑条</b>的款式，它能限制手腕过度后仰、把冲击力分散到前臂。纯软垫的其实只是心理安慰。另外护腕要<b>贴身戴在手套里面</b>，戴外面容易移位。
     </div>
   </div>
 
@@ -643,10 +757,10 @@
       <b>尽量不要用手掌撑地。</b>不管前摔还是后摔，这都是最容易犯、后果也最麻烦的本能反应。护具很有用，但替代不了正确的摔倒方式。
     </div>
     <div class="tip good">
-      <b>速度快了、心里发慌，就主动坐下或跪下。</b>可控的摔，永远好过失控的摔。坐的时候记得<b>先屈膝把重心降低再坐</b>，别直挺挺往后砸，不然一样会伤到尾椎。
+      速度快了、心里发慌，就主动坐下或跪下。<b>可控的摔，永远好过失控的摔。</b>坐的时候记得<b>先屈膝把重心降低再坐</b>，别直挺挺往后砸，不然一样会伤到尾椎。
     </div>
     <div class="tip">
-      <b>摔倒之后第一件事：抬头看看山上。</b>确认上面没有人正冲下来，再慢慢起身。
+      摔倒之后第一件事：<b>抬头看看山上</b>。确认上面没有人正冲下来，再慢慢起身。
     </div>
   </div>
 
@@ -695,7 +809,7 @@
       <li>鞋子抽绳拉紧之后，<b>蹬一蹬地，可以再拉紧一次</b>。</li>
     </ul>
     <div class="tip">
-      <b>为什么要紧：</b>雪鞋松的话，小腿的动作传不到雪板上，只能靠脚踝硬掰，会很累，板子也不太听话。
+      为什么要紧：雪鞋松的话，<b>小腿的动作传不到雪板上</b>，只能靠脚踝硬掰，会很累，板子也不太听话。
     </div>
     <a class="btn" href="http://xhslink.com/o/2fmC2O2enXJ" target="_blank" rel="noopener">
       <span class="ic">▶</span><span>看视频：正确穿雪袜雪鞋<small>小红书</small></span>
@@ -714,7 +828,7 @@
       <li>穿好之后前后压一压。</li>
     </ol>
     <div class="tip">
-      <b>小自检：</b>轻轻一动，雪板就跟着动，不需要用很大力。如果压了很多都感受不到雪板，多半是绑带或者雪鞋还没穿紧。
+      小自检：轻轻一动，雪板就跟着动，不需要用很大力。如果压了很多都感受不到雪板，多半是<b>绑带或者雪鞋还没穿紧</b>。
     </div>
   </div>
 </div>
@@ -745,10 +859,10 @@
     </ol>
 
     <div class="tip">
-      <b>力气小也能起来的关键：</b>起不来通常是这两个原因 —— <b>没把板横过来</b>（板子一直在往下溜，你等于在跟重力较劲），或者<b>上半身离板太远</b>（杠杆太长，相当于要把自己整个举起来）。身体越贴近雪板，越省力。
+      力气小也能起来的关键：起不来通常是这两个原因 —— <b>没把板横过来</b>（板子一直在往下溜，你等于在跟重力较劲），或者<b>上半身离板太远</b>（杠杆太长，相当于要把自己整个举起来）。身体越贴近雪板，越省力。
     </div>
     <div class="tip good">
-      <b>小提示：</b>不用在陡的地方硬撑。起不来的话，先用手把自己挪到坡度缓一点的位置再起身就好，很多老手也这么做。
+      不用在陡的地方硬撑。起不来的话，先用手把自己<b>挪到坡度缓一点的位置</b>再起身就好，很多老手也这么做。
     </div>
   </div>
 
@@ -780,7 +894,7 @@
       <li>滑到<b>旁边</b>再停下、再坐下穿板。</li>
     </ol>
     <div class="tip good">
-      <b>先给你打个预防针：</b>第一次下缆车摔了真的太正常了，很多滑了很久的人也会。摔了就赶紧往旁边挪一下，因为后面的椅子马上就到了。就这样而已，一点都不丢脸。
+      先给你打个预防针：<b>第一次下缆车摔了真的太正常了</b>，很多滑了很久的人也会。摔了就赶紧往旁边挪一下，因为后面的椅子马上就到了。就这样而已，一点都不丢脸。
     </div>
   </div>
 </div>
@@ -798,12 +912,12 @@
       <i><b>7</b>前转后 C 弯</i><i><b>8</b>后转前 C 弯</i><i><b>9</b>S 弯</i>
     </div>
     <div class="tip">
-      <b>每个教练的顺序可能不太一样。</b>有的会先教单脚滑行和直滑降，有的先从推坡落叶飘建立雪感再回头补。顺序不是唯一标准，跟着你教练的节奏走就好，这里只是给你自己对照进度用的。
+      每个教练的顺序可能不太一样。有的会先教单脚滑行和直滑降，有的先从推坡落叶飘建立雪感再回头补。<b>顺序不是唯一标准</b>，跟着你教练的节奏走就好，这里只是给你自己对照进度用的。
     </div>
   </div>
 
   <div class="card">
-    <h3>平地适应 <span style="font-size:12.5px;color:#9a8791;font-weight:400">（上坡之前先做一下）</span></h3>
+    <h3>平地适应 <span style="font-size:13px;color:var(--dim);font-weight:400">（上坡之前先做一下）</span></h3>
     <p>双脚绑好板，<b>在平地上</b>先让身体认识一下这块板。很多人跳过这步直接上坡，结果推坡的时候一直找不到刃在哪里。</p>
     <ol class="steps">
       <li><b>左右摇晃。</b>脚尖压下去，感受前刃立起来；脚跟压下去，感受后刃立起来。来回慢慢晃，体会“脚踝一动，板就动”。</li>
@@ -812,7 +926,7 @@
       <li><b>原地转一转。</b>试着用脚和身体，把板子在原地挪动一点角度。</li>
     </ol>
     <div class="tip good">
-      <b>为什么值得花这几分钟：</b>这是你的身体第一次理解“我的脚踝和这块板是连在一起的”。在平地上找到这个感觉，是零风险的；等到了坡上再找，就要一边怕一边找了。
+      为什么值得花这几分钟：这是你的身体第一次理解“我的脚踝和这块板是连在一起的”。<b>在平地上找到这个感觉，是零风险的</b>；等到了坡上再找，就要一边怕一边找了。
     </div>
   </div>
 
@@ -824,12 +938,12 @@
       <li>后脚踩回板上的时候，放在<b>后固定器前方</b>。</li>
     </ul>
     <div class="tip danger">
-      <b>提醒一下：“重心在前脚”这句只适用于单脚滑行。</b>双脚上板之后，前后脚要<b>均匀受力</b>，不是一直死压前脚。很多人把这句带进了推坡和落叶飘，结果后刃怎么都压不住。
+      提醒一下：<b>“重心在前脚”这句只适用于单脚滑行。</b>双脚上板之后，前后脚要<b>均匀受力</b>，不是一直死压前脚。很多人把这句带进了推坡和落叶飘，结果后刃怎么都压不住。
     </div>
   </div>
 
   <div class="card">
-    <h3>后刃刹停 <span style="font-size:12.5px;color:#9a8791;font-weight:400">（最值得先学会的一招）</span></h3>
+    <h3>后刃刹停 <span style="font-size:13px;color:var(--dim);font-weight:400">（最值得先学会的一招）</span></h3>
     <p>在学任何转弯之前，先学会<b>怎么让自己停下来</b>。这会是你在雪道上最踏实的安全感。</p>
     <ol class="steps">
       <li>让<b>雪板横过来</b>，垂直于滚落线。</li>
@@ -837,7 +951,7 @@
       <li>膝盖保持弯曲，重心压低，板子就会停住了。</li>
     </ol>
     <div class="tip good">
-      <b>记住这个组合就好：板横过来 + 脚跟压下去 = 刹车。</b>只要知道自己随时能停下来，在坡上的恐惧会少掉一大半。后面的落叶飘、J 弯，收尾用的也都是这一招。
+      记住这个组合就好：<b>板横过来 + 脚跟压下去 = 刹车</b>。只要知道自己随时能停下来，在坡上的恐惧会少掉一大半。后面的落叶飘、J 弯，收尾用的也都是这一招。
     </div>
   </div>
 
@@ -849,10 +963,10 @@
       <li>慢慢增加放直板的时间，一点点习惯速度。</li>
     </ul>
     <div class="tip good">
-      <b>一个参考目标：</b>待你以后能在稍陡一点的坡上放直板 3~5 秒还很从容，再学换刃会轻松很多。
+      一个参考目标：待你以后能在稍陡一点的坡上<b>放直板 3~5 秒还很从容</b>，再学换刃会轻松很多。
     </div>
     <div class="tip">
-      <b>控制不住方向？</b>通常是速度超过了你能接受的范围 —— 一害怕重心就后移，一后坐就控制不了方向了。这时候提醒自己重心前移，或者干脆把速度再放慢一点。
+      控制不住方向？通常是速度超过了你能接受的范围 —— 一害怕重心就后移，一后坐就控制不了方向了。这时候提醒自己<b>重心前移</b>，或者干脆把速度再放慢一点。
     </div>
     <p><span class="time">视频 0:00 – 6:43</span></p>
     <a class="btn" href="http://xhslink.com/o/AvoPeiZQwoN" target="_blank" rel="noopener">
@@ -871,7 +985,7 @@
     <h4>前刃推坡</h4>
     <p>原理一样，改成<b>膝盖顶向前刃、顶胯、抬起脚跟</b>，去感受胫骨压着鞋舌的那种支撑感。</p>
     <div class="tip">
-      <b>这个阶段，手自然垂在身体两侧就好，尽量别乱挥。</b>手一乱动会直接干扰平衡。可以反复练不同的幅度，感受重心移动多少会带来多少速度变化和刹车效果。
+      这个阶段，<b>手自然垂在身体两侧就好，尽量别乱挥</b>。手一乱动会直接干扰平衡。可以反复练不同的幅度，感受重心移动多少会带来多少速度变化和刹车效果。
     </div>
   </div>
 
@@ -884,7 +998,7 @@
     <div class="tip good">
       <b>前刃做不出来，真的不是你的问题。</b>前刃是背对着山下、看不见下面的，几乎所有人都会本能地抗拒，表现出来就是“前刃怎么都立不起来”。
       <br><br>
-      <b>可以这样做：</b>先在雪道边上<b>扶着朋友的手，或者扶着护网</b>做前刃推坡，让身体先相信“背对山下也不会失控”。有了这份信任感之后再放手，会顺很多。
+      可以这样做：先在雪道边上<b>扶着朋友的手，或者扶着护网</b>做前刃推坡，让身体先相信“背对山下也不会失控”。有了这份信任感之后再放手，会顺很多。
     </div>
     <h4>进阶目标</h4>
     <p>能比较自如地控制飘的角度和速度，横切整条雪道，而不是只能左右小幅度地挪动。</p>
@@ -899,7 +1013,7 @@
   </div>
 
   <div class="card">
-    <h3>Garland 波浪练习 <span style="font-size:12.5px;color:#9a8791;font-weight:400">（很推荐加练）</span></h3>
+    <h3>Garland 波浪练习 <span style="font-size:13px;color:var(--dim);font-weight:400">（很推荐加练）</span></h3>
     <p>这是<b>前刃恐惧</b>和<b>不敢放平板</b>的最好解药。它让你在<b>完全不用换刃</b>的前提下，反复体验“把板放平一点点、朝山下走一小段”的感觉。</p>
     <ol class="steps">
       <li>从落叶飘开始，保持在<b>同一个刃</b>上。</li>
@@ -908,7 +1022,7 @@
     </ol>
     <p>重复这个“放平一点 → 收回来”的动作，轨迹就像一串小波浪。</p>
     <div class="tip good">
-      <b>为什么特别推荐这一步：</b>换刃做不出来，最大的原因就是不敢把板放平。Garland 让你在<b>随时都能收住</b>的安全感里去练放平，练熟了再学 C 弯，会少摔很多次。
+      为什么特别推荐这一步：换刃做不出来，最大的原因就是<b>不敢把板放平</b>。Garland 让你在随时都能收住的安全感里去练放平，练熟了再学 C 弯，会少摔很多次。
     </div>
   </div>
 
@@ -923,7 +1037,7 @@
       <b>把前脚当成摇杆：</b>想象前脚是一个游戏手柄的摇杆，想往哪边转就往哪边转前脚，后脚自然跟着走，雪板就会自己 twist 过来。
     </div>
     <div class="tip good">
-      <b>控速很简单：</b>直板滑行的时间越短，进弯的速度就越慢。心里发怵的话，就早一点开始转。
+      控速很简单：<b>直板滑行的时间越短，进弯的速度就越慢</b>。心里发怵的话，就早一点开始转。
     </div>
   </div>
 
@@ -936,7 +1050,7 @@
       <li><b>转：</b>用胯带动身体旋转，顺序是<b>转头 → 转肩 → 转髋 → 转脚</b>，板子会跟着走。</li>
     </ol>
     <div class="tip">
-      <b>手的位置从这里开始要变一下。</b>前面推坡、落叶飘的时候手是自然垂在两侧的；<b>开始学换刃之后，改成“前手轻轻搭在前侧胯骨上”</b>，这样可以避免上半身抢着转 —— 具体原因在“换刃陷阱”那一节。
+      <b>手的位置从这里开始要变一下。</b>前面推坡、落叶飘的时候手是自然垂在两侧的；开始学换刃之后，改成<b>前手轻轻搭在前侧胯骨上</b>，这样可以避免上半身抢着转 —— 具体原因在“换刃陷阱”那一节。
     </div>
     <h4>拆成三步来练</h4>
     <ol class="steps">
@@ -945,16 +1059,16 @@
       <li><b>收弯：</b>换成<b>另一个刃</b>（前刃）做 J 弯收住。</li>
     </ol>
     <div class="tip danger">
-      <b>C 弯和 J 弯最大的区别就在这里：</b>J 弯是转上山、<b>回到原来那个刃</b>；C 弯是<b>换到另一个刃</b>。所以 C 弯结束的时候，你踩的一定是和起点<b>不同</b>的那个刃 —— 如果结束时还踩着出发那个刃，那其实做的是 J 弯，还没有真的换刃。
+      <b>C 弯和 J 弯最大的区别就在这里：</b>J 弯是转上山、<b>回到原来那个刃</b>；C 弯是<b>换到另一个刃</b>。所以 C 弯结束的时候，你踩的一定是和起点不同的那个刃 —— 如果结束时还踩着出发那个刃，那其实做的是 J 弯，还没有真的换刃。
     </div>
     <div class="tip danger">
-      <b>最关键的是时机：</b>板头指向山下、<b>整块板完全贴平雪面</b>之后，耐心等大约 1 秒，再把压力转移到新刃上。太早的话很容易卡刃摔倒。
+      <b>最关键的是时机：</b>板头指向山下、整块板<b>完全贴平雪面</b>之后，耐心等大约 1 秒，再把压力转移到新刃上。太早的话很容易卡刃摔倒。
     </div>
     <div class="tip">
       <b>膝盖全程保持弯曲。</b>膝盖既是发动机也是避震器。换刃之后双腿抖得厉害、在坡上突突突打滑的话，先看看是不是膝盖太直了。
     </div>
     <div class="tip good">
-      <b>关于节奏：</b>做完一次换刃可以慢下来，先稳住速度和站姿，再做下一个。转弯的过程完全可以是慢慢的 —— 坡度缓，就会有足够的时间。
+      关于节奏：做完一次换刃可以慢下来，先稳住速度和站姿，再做下一个。<b>转弯的过程完全可以是慢慢的</b> —— 坡度缓，就会有足够的时间。
     </div>
     <p><span class="time">视频 10:00 – 11:40</span></p>
     <a class="btn" href="http://xhslink.com/o/AvoPeiZQwoN" target="_blank" rel="noopener">
@@ -972,7 +1086,7 @@
     </ol>
     <p>把中间的<b>推坡时间和直板时间慢慢缩短</b>，两个反向的 C 弯就连成了流畅的 S 弯。</p>
     <div class="tip">
-      <b>练习建议：</b>在缓坡上设两个间距十米左右的参照物，保证每次换刃都完整、流畅地做完，慢慢建立肌肉记忆。不用贪大弯。
+      练习建议：在缓坡上设两个间距十米左右的参照物，保证每次换刃都<b>完整、流畅地做完</b>，慢慢建立肌肉记忆。不用贪大弯。
     </div>
     <p><span class="time">视频 11:40 – 结束</span></p>
     <a class="btn" href="http://xhslink.com/o/AvoPeiZQwoN" target="_blank" rel="noopener">
@@ -1019,24 +1133,23 @@
   <div class="ptitle"><span class="n">8</span><h2>换刃三大陷阱</h2></div>
   <p class="sub">换不过去、老是摔，基本都逃不出这三条</p>
   <div class="card">
-    <table>
-      <tr><th style="width:23%">陷阱</th><th style="width:37%">现象</th><th>怎么解</th></tr>
-      <tr>
-        <td><b>上半身乱扭</b></td>
-        <td>习惯先转肩膀，但板头还朝着山下，结果越转越快、直接失控。</td>
-        <td><b>绅士姿势</b>：<b>前手轻轻搭在前侧胯骨上，后手自然下垂</b>。整个转弯过程手别离开胯 —— 手一动，就说明上半身在抢转了。</td>
-      </tr>
-      <tr>
-        <td><b>换刃太快</b></td>
-        <td>雪板还没完全放平就急着压新刃，很容易卡刃摔跤。</td>
-        <td>耐心等直板滑行大约 1 秒，确认板面完全贴平雪面之后，再转移重心。</td>
-      </tr>
-      <tr>
-        <td><b>重心后坐躲刃</b></td>
-        <td>害怕摔倒所以身体后仰，重心落在后脚，雪板就没办法有效入刃。</td>
-        <td>保持<b>前驱入弯</b>的姿态，重心稍微靠前，小腿主动压向鞋舌，板头的抓地力会明显变好。</td>
-      </tr>
-    </table>
+    <div class="trap">
+      <article>
+        <h4>① 上半身乱扭</h4>
+        <div class="row"><b class="lbl">现象</b>习惯先转肩膀，但板头还朝着山下，结果越转越快、直接失控。</div>
+        <div class="row"><b class="lbl">怎么解</b><b>绅士姿势</b>：前手轻轻搭在前侧胯骨上，后手自然下垂。整个转弯过程手别离开胯 —— 手一动，就说明上半身在抢转了。</div>
+      </article>
+      <article>
+        <h4>② 换刃太快</h4>
+        <div class="row"><b class="lbl">现象</b>雪板还没完全放平就急着压新刃，很容易卡刃摔跤。</div>
+        <div class="row"><b class="lbl">怎么解</b>耐心等直板滑行大约 <b>1 秒</b>，确认板面完全贴平雪面之后，再转移重心。</div>
+      </article>
+      <article>
+        <h4>③ 重心后坐躲刃</h4>
+        <div class="row"><b class="lbl">现象</b>害怕摔倒所以身体后仰，重心落在后脚，雪板就没办法有效入刃。</div>
+        <div class="row"><b class="lbl">怎么解</b>保持<b>前驱入弯</b>的姿态，重心稍微靠前，小腿主动压向鞋舌，板头的抓地力会明显变好。</div>
+      </article>
+    </div>
   </div>
 </div>
 
@@ -1047,9 +1160,9 @@
 
   <div class="card">
     <h3>装备：可以直接找教练帮忙</h3>
-    <p>选雪鞋、调固定器角度，直接让教练帮你就好。</p>
+    <p>选雪鞋、调固定器角度，直接让教练帮你就好啦。</p>
     <div class="gear">
-      <div><em>🛷</em><span><b>选板选鞋。</b>跟教练台说是初学者，通常会给你比较软的鞋。体重轻的女生尤其适合<b>软板软鞋</b>。板太硬的话压不动、转不过来，会一整天都很挫败。</span></div>
+      <div><em>🛷</em><span><b>选板选鞋。</b>跟教练说是初学者，通常会给你比较软的鞋。体重轻的女生尤其适合<b>软板软鞋</b>。板太硬的话压不动、转不过来，会一整天都很挫败。</span></div>
       <div><em>📐</em><span><b>固定器角度。</b>让教练帮你设好。</span></div>
     </div>
     <div class="tip danger">
@@ -1107,25 +1220,35 @@
 <div class="progress" id="progress"></div>
 
 <footer>
-  祝你玩得开心，安全第一 🏂<br>
-  慢慢来，有的是时间
+  玩得开心，安全第一 🏂<br>
+  慢慢来，有的是时间 🍑
 </footer>
 
 </div>
 
+<!-- lightbox -->
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="放大查看图片">
+  <div class="lb-bar">
+    <span>双指可以放大 · 左右滑动</span>
+    <button type="button" id="lbClose">关闭</button>
+  </div>
+  <div class="lb-body" id="lbBody"></div>
+</div>
+
 <script>
 (function(){
-  var tabs   = Array.prototype.slice.call(document.querySelectorAll('.tab'));
-  var panels = Array.prototype.slice.call(document.querySelectorAll('.panel'));
+  var tabs   = [].slice.call(document.querySelectorAll('.tab'));
+  var panels = [].slice.call(document.querySelectorAll('.panel'));
   var names  = tabs.map(function(t){ return t.textContent.trim(); });
   var prev = document.getElementById('prev');
   var next = document.getElementById('next');
   var prevLabel = document.getElementById('prevLabel');
   var nextLabel = document.getElementById('nextLabel');
   var progress  = document.getElementById('progress');
-  var cur = 0;
+  var rpBar = document.getElementById('rpBar');
+  var cur = -1;
 
-  function show(i, scroll){
+  function render(i){
     cur = i;
     tabs.forEach(function(t,k){ t.setAttribute('aria-selected', k===i ? 'true':'false'); });
     panels.forEach(function(p,k){ p.classList.toggle('active', k===i); });
@@ -1140,18 +1263,69 @@
     if(active && active.scrollIntoView){
       active.scrollIntoView({block:'nearest', inline:'center', behavior:'smooth'});
     }
-    if(scroll !== false){ window.scrollTo({top:0, behavior:'smooth'}); }
-    if(history.replaceState){ history.replaceState(null,'','#p'+i); }
+    updateBar();
+  }
+
+  function go(i, push){
+    if(i===cur) return;
+    render(i);
+    if(push !== false && history.pushState){ history.pushState({p:i}, '', '#p'+i); }
+    window.scrollTo({top:0, behavior:'smooth'});
   }
 
   tabs.forEach(function(t){
-    t.addEventListener('click', function(){ show(parseInt(t.dataset.i,10)); });
+    t.addEventListener('click', function(){ go(parseInt(t.dataset.i,10)); });
   });
-  prev.addEventListener('click', function(){ if(cur>0) show(cur-1); });
-  next.addEventListener('click', function(){ if(cur<panels.length-1) show(cur+1); });
+  prev.addEventListener('click', function(){ if(cur>0) go(cur-1); });
+  next.addEventListener('click', function(){ if(cur<panels.length-1) go(cur+1); });
 
-  var m = location.hash.match(/^#p(\d+)$/);
-  show(m && panels[+m[1]] ? +m[1] : 0, false);
+  // back button returns to previous section instead of leaving the page
+  window.addEventListener('popstate', function(e){
+    var i = (e.state && typeof e.state.p === 'number') ? e.state.p : parseIdx();
+    render(i);
+    window.scrollTo({top:0});
+  });
+
+  function parseIdx(){
+    var m = location.hash.match(/^#p(\d+)$/);
+    var i = m ? +m[1] : 0;
+    return (i>=0 && i<panels.length) ? i : 0;
+  }
+
+  // reading progress of the active panel
+  function updateBar(){
+    var h = document.documentElement.scrollHeight - window.innerHeight;
+    var pct = h>0 ? Math.min(100, Math.max(0, window.scrollY / h * 100)) : 0;
+    rpBar.style.width = pct + '%';
+  }
+  window.addEventListener('scroll', updateBar, {passive:true});
+  window.addEventListener('resize', updateBar);
+
+  var start = parseIdx();
+  render(start);
+  if(history.replaceState){ history.replaceState({p:start}, '', '#p'+start); }
+
+  // ---- lightbox ----
+  var lb = document.getElementById('lb');
+  var lbBody = document.getElementById('lbBody');
+  document.querySelectorAll('figure').forEach(function(fig){
+    fig.style.cursor = 'zoom-in';
+    fig.addEventListener('click', function(){
+      var svg = fig.querySelector('svg');
+      if(!svg) return;
+      lbBody.innerHTML = '';
+      lbBody.appendChild(svg.cloneNode(true));
+      lb.classList.add('on');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+  function closeLb(){
+    lb.classList.remove('on');
+    lbBody.innerHTML = '';
+    document.body.style.overflow = '';
+  }
+  document.getElementById('lbClose').addEventListener('click', closeLb);
+  lb.addEventListener('click', function(e){ if(e.target === lb || e.target === lbBody) closeLb(); });
 })();
 </script>
 </body>
